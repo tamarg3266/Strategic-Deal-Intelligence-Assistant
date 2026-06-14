@@ -1,6 +1,7 @@
 *
 
 !.gitignore
+!README.md
 !Cato_GTM_AI_Engineer_Home_Task.md
 !synthetic_data/
 !synthetic_data/**
