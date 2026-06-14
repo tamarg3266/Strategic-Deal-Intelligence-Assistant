@@ -1,0 +1,15 @@
+*
+
+!.gitignore
+!Cato_GTM_AI_Engineer_Home_Task.md
+!synthetic_data/
+!synthetic_data/**
+
+synthetic_data/slack/
+synthetic_data/slack/**
+
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.py[cod]
