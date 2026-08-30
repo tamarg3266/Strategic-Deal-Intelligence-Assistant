@@ -15,6 +15,8 @@
   routed by deterministic policy.
 - Raw prompts are not stored. Model traces store hashes, model identifiers, latency,
   token usage, schema, and safe error type.
+- Streamed progress contains fixed stage messages only. It excludes evidence IDs,
+  source metadata, prompts, permissions, and deal facts.
 
 ## Human Feedback Safety
 

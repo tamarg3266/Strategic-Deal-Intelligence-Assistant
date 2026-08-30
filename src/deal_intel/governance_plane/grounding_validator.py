@@ -10,6 +10,7 @@ from deal_intel.contracts.schemas import (
     EvidenceBundle,
     EvidenceRecord,
     StrategicBrief,
+    StrategySynthesis,
 )
 
 
@@ -63,8 +64,29 @@ class GroundingValidator:
         evidence_catalog: dict[str, EvidenceRecord],
     ) -> GroundingVerification:
         source_text = self._source_text(brief.cited_evidence_ids, evidence_catalog)
-        rendered = "\n".join(brief.sections.values())
+        material_sections = (
+            "Deal Snapshot",
+            "Executive Summary",
+            "Buyer Goals and Business Drivers",
+            "Stakeholder Map",
+            "Negotiation State",
+            "Recommended Next Actions",
+        )
+        rendered = "\n".join(brief.sections[name] for name in material_sections)
         violations = self._violations("brief", rendered, source_text)
+        return GroundingVerification(valid=not violations, violations=violations)
+
+    def verify_strategy(
+        self,
+        strategy: StrategySynthesis,
+        evidence_catalog: dict[str, EvidenceRecord],
+    ) -> GroundingVerification:
+        violations: list[str] = []
+        for index, claim in enumerate(strategy.claims()):
+            source_text = self._source_text(claim.evidence_ids, evidence_catalog)
+            violations.extend(
+                self._violations(f"strategy_claim[{index}]", claim.claim, source_text)
+            )
         return GroundingVerification(valid=not violations, violations=violations)
 
     def _violations(self, label: str, text: str, source_text: str) -> list[str]:

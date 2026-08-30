@@ -1,0 +1,673 @@
+{
+  "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+  "request": {
+    "opportunity_id": "OPP-1003",
+    "requester_id": "USR-5003",
+    "user_input": "Generate an internal Strategic Deal Intelligence Brief."
+  },
+  "status": "approval_required",
+  "brief": {
+    "status": "approval_required",
+    "sections": {
+      "Deal Snapshot": "- Salesforce records the opportunity at stage 5.0 Negotiate, with ACV 1879000, TCV 5637000, close date 2026-06-05, forecast category Pipeline, probability 49, owner Nora Chen, and CRM next step to route discount, liability language, and restricted data access request for approval by 2026-05-14. [EV-SF-OPPORTUNITY-OPP-1003] (confidence: high)\n- The renewal is commercially pressured by board and procurement demands for cost reduction or a shorter commitment, while the economic buyer continues to support renewal certainty. [EV-SF-CONTACT-OPP-1003-CON-3011, EV-SF-CONTACT-OPP-1003-CON-3014, EV-GONG-SUMMARY-CALL-027] (confidence: high)\n- Restricted workflow support, team segmentation, audit evidence, and temporary-access controls are material renewal dependencies; security does not support removing restricted workflow support in exchange for cost reduction. [EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-TRANSCRIPT-CALL-027, EV-SF-CONTACT-OPP-1003-CON-3012, EV-SF-CONTACT-OPP-1003-CON-3015] (confidence: high)\n- Pricing note PN-4004 records current ACV 2035000, proposed ACV 1879000, renewal uplift -8, requested discount 18, and approval status pending_deal_desk. [EV-PRICING-PN-4004] (confidence: high)\n- Pricing note PN-4005 records an alternative package with current ACV 2035000, proposed ACV 1975000, renewal uplift -3, requested discount 12, and approval status pending_legal_and_manager. [EV-PRICING-PN-4005] (confidence: high)\n- The internal negotiation path currently includes payment flexibility and a package adjustment that preserves restricted workflow support; the larger discount is not approved for recommendation or customer communication. [EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-SUMMARY-CALL-027, EV-SLACK-SLACK-1003-01] (confidence: high)\n- Customer-facing liability, concession, data-retention, and restricted-research language requires the relevant approval process before external use. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-POLICY-OPP-1003-DEAL-DESK, EV-SF-CONTACT-OPP-1003-CON-3013] (confidence: high)",
+      "Executive Summary": "- The opportunity is recorded in negotiation, but the close timing is conditional on controlled approval sequencing and the next step is to route discount, liability language, and restricted data access requests for approval. [EV-GONG-TRANSCRIPT-CALL-027, EV-SF-OPPORTUNITY-OPP-1003] (confidence: medium)\n- Negotiation strategy remains unsettled: procurement prioritizes cost reduction or a shorter commitment, while security requires preserved restricted-workflow support and legal requires controlled language. [EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-SUMMARY-CALL-023, EV-SLACK-SLACK-1003-02] (confidence: high)\n- A package adjustment preserving restricted-workflow support may be more defensible than a blunt discount, but the exact packaging path remains unresolved. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027] (confidence: medium)",
+      "Buyer Goals and Business Drivers": "- Priya Sato seeks renewal continuity and cost reduction under board scrutiny, with a credible plan needed before signature rather than a perfect workflow. [EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Procurement requires a material reduction from the current run rate or a shorter commitment to recommend approval. [EV-GONG-TRANSCRIPT-CALL-027, EV-SF-CONTACT-OPP-1003-CON-3014] (confidence: high)\n- Security requires research-team segmentation, restricted-workflow support, and temporary access that expires unless reapproved. [EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Research IT needs a workable exception process and audit exports suitable for the research compliance lead rather than screenshots. [EV-GONG-TRANSCRIPT-CALL-019] (confidence: high)",
+      "Stakeholder Map": "- Salesforce classifies Priya Sato as the economic buyer; this CRM classification is not independent proof of final approval authority. [EV-SF-CONTACT-OPP-1003-CON-3011] (confidence: high)\n- Salesforce classifies Mateo Ruan as the champion, while his stated position makes restricted-workflow support and segmentation non-negotiable; the CRM classification is not independent proof of final approval authority. [EV-SF-CONTACT-OPP-1003-CON-3012, EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Salesforce classifies Darin Holt as the commercial negotiator, and he directly communicated procurement's requirement for material cost reduction or a shorter commitment. [EV-SF-CONTACT-OPP-1003-CON-3014, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Salesforce classifies Leah Tan as the legal approver, while she directly required legal and Deal Desk approval before customer-facing concession or liability language is used; the CRM classification is not independent proof of final approval authority. [EV-SF-CONTACT-OPP-1003-CON-3013, EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Salesforce classifies Mei Arlen as the technical evaluator, and she requires auditable evidence while identifying slow temporary-access exceptions as an escalation risk; the CRM classification is not independent proof of final approval authority. [EV-SF-CONTACT-OPP-1003-CON-3015, EV-GONG-TRANSCRIPT-CALL-019] (confidence: high)",
+      "Negotiation State": "- The aggressive scenario requests an 18% discount with a -8% renewal uplift and remains pending Deal Desk review; it is not approved for recommendation or customer communication. [EV-PRICING-PN-4004, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-SUMMARY-CALL-027, EV-SLACK-SLACK-1003-01] (confidence: high)\n- The alternative package requests a 12% discount with a -3% renewal uplift and remains pending legal and manager review, with liability-language and restricted-evidence dependencies. [EV-PRICING-PN-4005, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Customer-facing liability and concession language requires legal and Deal Desk approval before use, and no such language was approved in the cited negotiation-preparation discussion. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- The audit export sample is complete, but confirmation of the exception-workflow expiration owner remains unresolved. [EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)",
+      "Recommended Next Actions": "- Prepare an internal package comparison covering a core renewal with payment flexibility, a packaging adjustment that preserves restricted-workflow support, and a separately labeled aggressive scenario that is not approved. Owner: Deal Desk and Account Executive. Rationale: The buyer group requested options, while security requires preserved controls and procurement wants leverage; the comparison should expose commercial, security, and approval trade-offs without presenting the aggressive scenario as available. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Route all discount scenarios to Deal Desk and all liability or customer-facing concession language to Legal before any external proposal or wording is prepared. Owner: Account Executive. Rationale: Procurement is requesting an aggressive commercial path, but the cited buyer discussions explicitly require approval and identify unapproved language as a legal and negotiation risk. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-SLACK-SLACK-1003-01, EV-SLACK-SLACK-1003-02] (confidence: high)\n- Complete a restricted evidence pack with the audit export, exception workflow diagram, automatic expiration and reapproval behavior, audit-trail ownership, and the confirmed expiration owner; enforce the approved reviewer list before distribution. Owner: Solutions Engineering and Security Review Lead. Rationale: Security and research IT require evidence of segmentation, auditability, and expiration controls, while the expiration owner and reviewer permissions remain unresolved. [EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-SUMMARY-CALL-024, EV-GONG-SUMMARY-CALL-026, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Apply permission filtering and audience-specific redaction to every internal brief containing restricted research evidence or sensitive pricing. Owner: Information Security Operations. Rationale: The account evidence requires narrow access to restricted workflow details, while policy prohibits disclosure when source access is not authorized. [EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-SUMMARY-CALL-026, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Route the 18 discount and -8 renewal uplift scenario to Deal Desk for approval before it is recommended internally or shared externally. Owner: Deal Desk. Rationale: The pricing record is pending Deal Desk approval, and the approval policy requires review for discounts above 10 percent and any negative renewal uplift. [EV-PRICING-PN-4004, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Route the 12 discount and -3 renewal uplift alternative package through legal and management approval, with explicit inclusion and exclusion terms for the package. Owner: Commercial Operations Manager. Rationale: The alternative package remains pending legal and manager approval and includes liability-language and restricted-evidence dependencies that require precise terms. [EV-PRICING-PN-4005, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-TRANSCRIPT-CALL-023] (confidence: high)\n- Prepare an internal comparison of the payment-flexibility option, the controls-preserving package option, and the unapproved aggressive scenario, including approval gates and commercial, security, and legal trade-offs. Owner: Account Executive. Rationale: The account team requested internal-only scenarios, procurement wants a written package comparison, and security and legal constraints must remain visible in the decision process. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-SUMMARY-CALL-025] (confidence: high)\n- Keep all liability and concession language in internal review until legal and Deal Desk approval is recorded; do not generate customer-facing concession language meanwhile. Owner: Legal Counsel. Rationale: Legal has not approved liability language, the pricing positions remain pending, and policy prohibits customer-facing concession language without approved status. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-SLACK-SLACK-1003-01, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Complete the audit export and exception-workflow evidence pack, including expiration-owner confirmation, before using security evidence to support the commercial package. Owner: Solutions Engineering. Rationale: The audit export sample is complete, but expiration-owner confirmation remains missing and restricted workflow evidence is a material renewal dependency. [EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-SUMMARY-CALL-020] (confidence: high)\n- Enforce restricted-source permissions and limit the internal brief to authorized reviewers; use only separately approved external-safe process language if communication is required. Owner: Account Executive. Rationale: The account and call sources are restricted, and the team explicitly requires permission checks before retrieval, summary generation, or external sharing. [EV-GONG-SUMMARY-CALL-024, EV-GONG-SUMMARY-CALL-026, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Validate the aggressive pricing scenario against commercial economics, support obligations, and policy thresholds before including it in the internal package comparison. Owner: Deal Desk Analyst. Rationale: The scenario carries high commercial risk, requests an 18% discount and -8% renewal uplift, and is recorded as pending Deal Desk review. [EV-PRICING-PN-4004, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Validate the alternative package as a single commercial, legal, and security scenario, including its liability-language and restricted-evidence dependencies. Owner: Deal Desk Analyst. Rationale: The alternative requests a 12% discount and -3% renewal uplift and is recorded with pending legal and manager review plus liability and restricted-evidence dependencies. [EV-PRICING-PN-4005, EV-POLICY-OPP-1003-DEAL-DESK] (confidence: high)\n- Create an internal legal issue matrix covering the open liability-cap position, package terms, and boundaries on concession communications. Owner: Legal Counsel. Rationale: Liability language remains open, and the evidence warns that informal customer-facing language can create legal and negotiation exposure. [EV-GONG-SUMMARY-CALL-022, EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027] (confidence: high)\n- Test each package configuration for preservation of restricted-workflow support, temporary-access expiration, and audit ownership. Owner: Security Architect. Rationale: Security stakeholders reject packaging that removes restricted-workflow support, and the expiration owner remains unconfirmed. [EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-019] (confidence: high)\n- Prepare an internal package comparison that separately scores commercial relief, security consequences, legal dependencies, and external-readiness status. Owner: Account Strategy Lead. Rationale: Stakeholders disagree on whether cost relief or risk mitigation should lead, and the package path remains only medium confidence. [EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-SLACK-SLACK-1003-02] (confidence: medium)",
+      "Missing Information": "- Approval status for the requested 18 discount and -8 renewal uplift.\n- Approval status and final wording for liability language.\n- Whether the 12 discount and -3 renewal uplift alternative package is approved by legal and management.\n- Confirmed list of authorized reviewers for restricted evidence.\n- Confirmation of the research exception-workflow expiration owner.\n- Current number of temporary-access requests by project.\n- Final inclusion and exclusion terms for any deferred or adjusted package.\n- The current number of temporary-access requests by project has not been provided.\n- The approved list of reviewers for restricted evidence has not been established.\n- The expiration owner for the research exception workflow remains unconfirmed.\n- The approvable concession level and approval status for any aggressive discount remain unresolved.\n- The final customer-facing liability and concession language remains unapproved.\n- Confirmed expiration owner for the research exception workflow.\n- Current authorized-reviewer list for restricted evidence.\n- Current temporary-access request counts by project.\n- Final internally supportable concession level and package path.\n- Final liability-cap language and associated legal disposition.",
+      "Source Evidence": "- [EV-SF-OPPORTUNITY-OPP-1003] source=synthetic_data/salesforce/opportunities.tsv, opportunity_id=OPP-1003\n- [EV-SF-CONTACT-OPP-1003-CON-3011] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3011\n- [EV-SF-CONTACT-OPP-1003-CON-3014] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3014\n- [EV-GONG-SUMMARY-CALL-027] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-027\n- [EV-GONG-TRANSCRIPT-CALL-019] source=synthetic_data/gong/transcripts/OPP-1003_CALL-019.md, call_id=CALL-019\n- [EV-GONG-TRANSCRIPT-CALL-027] source=synthetic_data/gong/transcripts/OPP-1003_CALL-027.md, call_id=CALL-027\n- [EV-SF-CONTACT-OPP-1003-CON-3012] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3012\n- [EV-SF-CONTACT-OPP-1003-CON-3015] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3015\n- [EV-PRICING-PN-4004] source=synthetic_data/pricing/pricing_notes.tsv, pricing_note_id=PN-4004\n- [EV-PRICING-PN-4005] source=synthetic_data/pricing/pricing_notes.tsv, pricing_note_id=PN-4005\n- [EV-SLACK-SLACK-1003-01] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1003-01\n- [EV-GONG-TRANSCRIPT-CALL-023] source=synthetic_data/gong/transcripts/OPP-1003_CALL-023.md, call_id=CALL-023\n- [EV-POLICY-OPP-1003-DEAL-DESK] source=synthetic_data/policies/deal_desk_policy.md, policy_id=DEAL-DESK-POLICY-V1\n- [EV-SF-CONTACT-OPP-1003-CON-3013] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3013\n- [EV-GONG-SUMMARY-CALL-023] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-023\n- [EV-SLACK-SLACK-1003-02] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1003-02\n- [EV-GONG-SUMMARY-CALL-024] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-024\n- [EV-GONG-SUMMARY-CALL-026] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-026\n- [EV-GONG-SUMMARY-CALL-025] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-025\n- [EV-GONG-SUMMARY-CALL-020] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-020\n- [EV-GONG-SUMMARY-CALL-022] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-022",
+      "Confidence and Review Warnings": "- commercial_analyst reported 3 evidence conflict(s); human review is required.\n- buyer_signal_analyst reported 4 evidence conflict(s); human review is required.\n- risk_approval_analyst reported 3 evidence conflict(s); human review is required.\n- risk_approval_analyst produced 1 low-confidence finding(s).\n\nHuman approval gates:\n- Approval c1902a3e-e26c-4b10-b768-771e95e35da9 requires deal_desk, human_reviewer, sales_leader for recommendations 48bd7f1b-4d97-43bf-817f-fdf5d0d1a4d1, 141b1fb0-d4de-418b-ab1b-7355d5c7490b, 8e1c464e-f334-4bbb-9308-c51683158aef, 5fa32ce9-423c-4453-9748-5edd737348af: Human approval is required from deal_desk, human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, commercial_concession, conflicting_evidence, missing_source_data, discount_above_10_percent, discount_above_15_percent, negative_renewal_uplift. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-PRICING-PN-4004, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-TRANSCRIPT-CALL-019\n- Approval 35294397-42d1-4436-84fe-8614f1f648ad requires deal_desk, human_reviewer, legal, sales_leader for recommendations 95fd3c88-ba94-41ff-a642-30b0a15717ec, eac373fe-427c-4990-af31-51d5668f79ec, c2ec081b-1b2f-4557-b55a-0a64654d2481, 84707567-f2b1-46b6-ad2b-66492e14a114: Human approval is required from deal_desk, human_reviewer, legal, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, legal_or_liability_change, commercial_concession, customer_facing_language, conflicting_evidence, missing_source_data, discount_above_10_percent, negative_renewal_uplift. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-SLACK-SLACK-1003-01, EV-SLACK-SLACK-1003-02, EV-PRICING-PN-4005, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-SUMMARY-CALL-022\n- Approval aabcac51-1ca1-4694-ac55-251a160c7707 requires human_reviewer for recommendations ea82735c-3992-46c2-818f-f8cea60e00c9, 17d046b3-b01f-4c0d-98a6-9aabe97ea895, bf16374f-19ae-4bf5-aa2b-c0bd0e617327, db05c56a-dec7-4944-9bc0-41d19efe1e5e: Human approval is required from human_reviewer for 4 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-019, EV-GONG-SUMMARY-CALL-024, EV-GONG-SUMMARY-CALL-026, EV-GONG-TRANSCRIPT-CALL-027, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-SUMMARY-CALL-020\n- Approval 62920d43-3fb6-48e6-a20d-d61e3c31cfb6 requires deal_desk, human_reviewer, legal for recommendations 199f7638-48d7-45d0-9258-b7717bb9148b, a3a94cca-6119-4ac7-8b40-31fde41025ab: Human approval is required from deal_desk, human_reviewer, legal for 2 grouped recommendation(s) because they trigger: discount_above_10_percent, negative_renewal_uplift, legal_or_liability_change, conflicting_evidence, missing_source_data, pricing_recommendation. The model cannot approve or publish these recommendations. Evidence: EV-PRICING-PN-4005, EV-POLICY-OPP-1003-DEAL-DESK, EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-GONG-SUMMARY-CALL-025\n- Approval 5c745732-8d70-4685-a717-747e7a84aa03 requires human_reviewer, legal for recommendations 5f6f8e49-d64e-4ad7-b580-505631b4541a: Human approval is required from human_reviewer, legal for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-023, EV-GONG-TRANSCRIPT-CALL-027, EV-SLACK-SLACK-1003-01, EV-POLICY-OPP-1003-DEAL-DESK"
+    },
+    "cited_evidence_ids": [
+      "EV-SF-OPPORTUNITY-OPP-1003",
+      "EV-SF-CONTACT-OPP-1003-CON-3011",
+      "EV-SF-CONTACT-OPP-1003-CON-3014",
+      "EV-GONG-SUMMARY-CALL-027",
+      "EV-GONG-TRANSCRIPT-CALL-019",
+      "EV-GONG-TRANSCRIPT-CALL-027",
+      "EV-SF-CONTACT-OPP-1003-CON-3012",
+      "EV-SF-CONTACT-OPP-1003-CON-3015",
+      "EV-PRICING-PN-4004",
+      "EV-PRICING-PN-4005",
+      "EV-SLACK-SLACK-1003-01",
+      "EV-GONG-TRANSCRIPT-CALL-023",
+      "EV-POLICY-OPP-1003-DEAL-DESK",
+      "EV-SF-CONTACT-OPP-1003-CON-3013",
+      "EV-GONG-SUMMARY-CALL-023",
+      "EV-SLACK-SLACK-1003-02",
+      "EV-GONG-SUMMARY-CALL-024",
+      "EV-GONG-SUMMARY-CALL-026",
+      "EV-GONG-SUMMARY-CALL-025",
+      "EV-GONG-SUMMARY-CALL-020",
+      "EV-GONG-SUMMARY-CALL-022"
+    ],
+    "recommendations": [
+      {
+        "recommendation_id": "48bd7f1b-4d97-43bf-817f-fdf5d0d1a4d1",
+        "action": "Prepare an internal package comparison covering a core renewal with payment flexibility, a packaging adjustment that preserves restricted-workflow support, and a separately labeled aggressive scenario that is not approved.",
+        "rationale": "The buyer group requested options, while security requires preserved controls and procurement wants leverage; the comparison should expose commercial, security, and approval trade-offs without presenting the aggressive scenario as available.",
+        "owner_role": "Deal Desk and Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession",
+          "security"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "95fd3c88-ba94-41ff-a642-30b0a15717ec",
+        "action": "Route all discount scenarios to Deal Desk and all liability or customer-facing concession language to Legal before any external proposal or wording is prepared.",
+        "rationale": "Procurement is requesting an aggressive commercial path, but the cited buyer discussions explicitly require approval and identify unapproved language as a legal and negotiation risk.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-SLACK-SLACK-1003-01",
+          "EV-SLACK-SLACK-1003-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession",
+          "legal",
+          "liability",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "ea82735c-3992-46c2-818f-f8cea60e00c9",
+        "action": "Complete a restricted evidence pack with the audit export, exception workflow diagram, automatic expiration and reapproval behavior, audit-trail ownership, and the confirmed expiration owner; enforce the approved reviewer list before distribution.",
+        "rationale": "Security and research IT require evidence of segmentation, auditability, and expiration controls, while the expiration owner and reviewer permissions remain unresolved.",
+        "owner_role": "Solutions Engineering and Security Review Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-019",
+          "EV-GONG-SUMMARY-CALL-024",
+          "EV-GONG-SUMMARY-CALL-026",
+          "EV-GONG-TRANSCRIPT-CALL-027"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security",
+          "data_retention"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "17d046b3-b01f-4c0d-98a6-9aabe97ea895",
+        "action": "Apply permission filtering and audience-specific redaction to every internal brief containing restricted research evidence or sensitive pricing.",
+        "rationale": "The account evidence requires narrow access to restricted workflow details, while policy prohibits disclosure when source access is not authorized.",
+        "owner_role": "Information Security Operations",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-019",
+          "EV-GONG-SUMMARY-CALL-026",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "141b1fb0-d4de-418b-ab1b-7355d5c7490b",
+        "action": "Route the 18 discount and -8 renewal uplift scenario to Deal Desk for approval before it is recommended internally or shared externally.",
+        "rationale": "The pricing record is pending Deal Desk approval, and the approval policy requires review for discounts above 10 percent and any negative renewal uplift.",
+        "owner_role": "Deal Desk",
+        "evidence_ids": [
+          "EV-PRICING-PN-4004",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "pricing",
+          "discount",
+          "internal_action"
+        ],
+        "proposed_discount_percent": 18.0,
+        "proposed_renewal_uplift_percent": -8.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "199f7638-48d7-45d0-9258-b7717bb9148b",
+        "action": "Route the 12 discount and -3 renewal uplift alternative package through legal and management approval, with explicit inclusion and exclusion terms for the package.",
+        "rationale": "The alternative package remains pending legal and manager approval and includes liability-language and restricted-evidence dependencies that require precise terms.",
+        "owner_role": "Commercial Operations Manager",
+        "evidence_ids": [
+          "EV-PRICING-PN-4005",
+          "EV-POLICY-OPP-1003-DEAL-DESK",
+          "EV-GONG-TRANSCRIPT-CALL-023"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "pricing",
+          "discount",
+          "legal",
+          "internal_action"
+        ],
+        "proposed_discount_percent": 12.0,
+        "proposed_renewal_uplift_percent": -3.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "a3a94cca-6119-4ac7-8b40-31fde41025ab",
+        "action": "Prepare an internal comparison of the payment-flexibility option, the controls-preserving package option, and the unapproved aggressive scenario, including approval gates and commercial, security, and legal trade-offs.",
+        "rationale": "The account team requested internal-only scenarios, procurement wants a written package comparison, and security and legal constraints must remain visible in the decision process.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-GONG-SUMMARY-CALL-025"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "security",
+          "legal"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "5f6f8e49-d64e-4ad7-b580-505631b4541a",
+        "action": "Keep all liability and concession language in internal review until legal and Deal Desk approval is recorded; do not generate customer-facing concession language meanwhile.",
+        "rationale": "Legal has not approved liability language, the pricing positions remain pending, and policy prohibits customer-facing concession language without approved status.",
+        "owner_role": "Legal Counsel",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-SLACK-SLACK-1003-01",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "legal",
+          "internal_action"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "bf16374f-19ae-4bf5-aa2b-c0bd0e617327",
+        "action": "Complete the audit export and exception-workflow evidence pack, including expiration-owner confirmation, before using security evidence to support the commercial package.",
+        "rationale": "The audit export sample is complete, but expiration-owner confirmation remains missing and restricted workflow evidence is a material renewal dependency.",
+        "owner_role": "Solutions Engineering",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-GONG-TRANSCRIPT-CALL-019",
+          "EV-GONG-SUMMARY-CALL-020"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "db05c56a-dec7-4944-9bc0-41d19efe1e5e",
+        "action": "Enforce restricted-source permissions and limit the internal brief to authorized reviewers; use only separately approved external-safe process language if communication is required.",
+        "rationale": "The account and call sources are restricted, and the team explicitly requires permission checks before retrieval, summary generation, or external sharing.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-SUMMARY-CALL-024",
+          "EV-GONG-SUMMARY-CALL-026",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security",
+          "data_retention"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "8e1c464e-f334-4bbb-9308-c51683158aef",
+        "action": "Validate the aggressive pricing scenario against commercial economics, support obligations, and policy thresholds before including it in the internal package comparison.",
+        "rationale": "The scenario carries high commercial risk, requests an 18% discount and -8% renewal uplift, and is recorded as pending Deal Desk review.",
+        "owner_role": "Deal Desk Analyst",
+        "evidence_ids": [
+          "EV-PRICING-PN-4004",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession"
+        ],
+        "proposed_discount_percent": 18.0,
+        "proposed_renewal_uplift_percent": -8.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "eac373fe-427c-4990-af31-51d5668f79ec",
+        "action": "Validate the alternative package as a single commercial, legal, and security scenario, including its liability-language and restricted-evidence dependencies.",
+        "rationale": "The alternative requests a 12% discount and -3% renewal uplift and is recorded with pending legal and manager review plus liability and restricted-evidence dependencies.",
+        "owner_role": "Deal Desk Analyst",
+        "evidence_ids": [
+          "EV-PRICING-PN-4005",
+          "EV-POLICY-OPP-1003-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession",
+          "legal",
+          "liability",
+          "security"
+        ],
+        "proposed_discount_percent": 12.0,
+        "proposed_renewal_uplift_percent": -3.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "c2ec081b-1b2f-4557-b55a-0a64654d2481",
+        "action": "Create an internal legal issue matrix covering the open liability-cap position, package terms, and boundaries on concession communications.",
+        "rationale": "Liability language remains open, and the evidence warns that informal customer-facing language can create legal and negotiation exposure.",
+        "owner_role": "Legal Counsel",
+        "evidence_ids": [
+          "EV-GONG-SUMMARY-CALL-022",
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "legal",
+          "liability",
+          "concession"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "5fa32ce9-423c-4453-9748-5edd737348af",
+        "action": "Test each package configuration for preservation of restricted-workflow support, temporary-access expiration, and audit ownership.",
+        "rationale": "Security stakeholders reject packaging that removes restricted-workflow support, and the expiration owner remains unconfirmed.",
+        "owner_role": "Security Architect",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-019"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security",
+          "concession"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "84707567-f2b1-46b6-ad2b-66492e14a114",
+        "action": "Prepare an internal package comparison that separately scores commercial relief, security consequences, legal dependencies, and external-readiness status.",
+        "rationale": "Stakeholders disagree on whether cost relief or risk mitigation should lead, and the package path remains only medium confidence.",
+        "owner_role": "Account Strategy Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-023",
+          "EV-GONG-TRANSCRIPT-CALL-027",
+          "EV-SLACK-SLACK-1003-02"
+        ],
+        "confidence": "medium",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "concession",
+          "legal",
+          "security"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      }
+    ],
+    "pending_approval_ids": [
+      "c1902a3e-e26c-4b10-b768-771e95e35da9",
+      "35294397-42d1-4436-84fe-8614f1f648ad",
+      "aabcac51-1ca1-4694-ac55-251a160c7707",
+      "62920d43-3fb6-48e6-a20d-d61e3c31cfb6",
+      "5c745732-8d70-4685-a717-747e7a84aa03"
+    ]
+  },
+  "approvals": [
+    {
+      "approval_id": "c1902a3e-e26c-4b10-b768-771e95e35da9",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "grouping_key": "roles:deal_desk+human_reviewer+sales_leader",
+      "recommendation_ids": [
+        "48bd7f1b-4d97-43bf-817f-fdf5d0d1a4d1",
+        "141b1fb0-d4de-418b-ab1b-7355d5c7490b",
+        "8e1c464e-f334-4bbb-9308-c51683158aef",
+        "5fa32ce9-423c-4453-9748-5edd737348af"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Prepare an internal package comparison covering a core renewal with payment flexibility, a packaging adjustment that preserves restricted-workflow support, and a separately labeled aggressive scenario that is not approved.",
+        "Route the 18 discount and -8 renewal uplift scenario to Deal Desk for approval before it is recommended internally or shared externally.",
+        "Validate the aggressive pricing scenario against commercial economics, support obligations, and policy thresholds before including it in the internal package comparison.",
+        "Test each package configuration for preservation of restricted-workflow support, temporary-access expiration, and audit ownership."
+      ],
+      "rationales": [
+        "The buyer group requested options, while security requires preserved controls and procurement wants leverage; the comparison should expose commercial, security, and approval trade-offs without presenting the aggressive scenario as available.",
+        "The pricing record is pending Deal Desk approval, and the approval policy requires review for discounts above 10 percent and any negative renewal uplift.",
+        "The scenario carries high commercial risk, requests an 18% discount and -8% renewal uplift, and is recorded as pending Deal Desk review.",
+        "Security stakeholders reject packaging that removes restricted-workflow support, and the expiration owner remains unconfirmed."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-023",
+        "EV-GONG-TRANSCRIPT-CALL-027",
+        "EV-PRICING-PN-4004",
+        "EV-POLICY-OPP-1003-DEAL-DESK",
+        "EV-GONG-TRANSCRIPT-CALL-019"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "commercial_concession",
+        "conflicting_evidence",
+        "missing_source_data",
+        "discount_above_10_percent",
+        "discount_above_15_percent",
+        "negative_renewal_uplift"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7",
+        "Deal Desk policy rule 2",
+        "Deal Desk policy rule 3"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, commercial_concession, conflicting_evidence, missing_source_data, discount_above_10_percent, discount_above_15_percent, negative_renewal_uplift. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:13:56.805151Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "35294397-42d1-4436-84fe-8614f1f648ad",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "grouping_key": "roles:deal_desk+human_reviewer+legal+sales_leader",
+      "recommendation_ids": [
+        "95fd3c88-ba94-41ff-a642-30b0a15717ec",
+        "eac373fe-427c-4990-af31-51d5668f79ec",
+        "c2ec081b-1b2f-4557-b55a-0a64654d2481",
+        "84707567-f2b1-46b6-ad2b-66492e14a114"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "legal",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Route all discount scenarios to Deal Desk and all liability or customer-facing concession language to Legal before any external proposal or wording is prepared.",
+        "Validate the alternative package as a single commercial, legal, and security scenario, including its liability-language and restricted-evidence dependencies.",
+        "Create an internal legal issue matrix covering the open liability-cap position, package terms, and boundaries on concession communications.",
+        "Prepare an internal package comparison that separately scores commercial relief, security consequences, legal dependencies, and external-readiness status."
+      ],
+      "rationales": [
+        "Procurement is requesting an aggressive commercial path, but the cited buyer discussions explicitly require approval and identify unapproved language as a legal and negotiation risk.",
+        "The alternative requests a 12% discount and -3% renewal uplift and is recorded with pending legal and manager review plus liability and restricted-evidence dependencies.",
+        "Liability language remains open, and the evidence warns that informal customer-facing language can create legal and negotiation exposure.",
+        "Stakeholders disagree on whether cost relief or risk mitigation should lead, and the package path remains only medium confidence."
+      ],
+      "confidence": "medium",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-023",
+        "EV-GONG-TRANSCRIPT-CALL-027",
+        "EV-SLACK-SLACK-1003-01",
+        "EV-SLACK-SLACK-1003-02",
+        "EV-PRICING-PN-4005",
+        "EV-POLICY-OPP-1003-DEAL-DESK",
+        "EV-GONG-SUMMARY-CALL-022"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "legal_or_liability_change",
+        "commercial_concession",
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data",
+        "discount_above_10_percent",
+        "negative_renewal_uplift"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7",
+        "Deal Desk policy rule 3"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, legal, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, legal_or_liability_change, commercial_concession, customer_facing_language, conflicting_evidence, missing_source_data, discount_above_10_percent, negative_renewal_uplift. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:13:56.815933Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "aabcac51-1ca1-4694-ac55-251a160c7707",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "grouping_key": "roles:human_reviewer",
+      "recommendation_ids": [
+        "ea82735c-3992-46c2-818f-f8cea60e00c9",
+        "17d046b3-b01f-4c0d-98a6-9aabe97ea895",
+        "bf16374f-19ae-4bf5-aa2b-c0bd0e617327",
+        "db05c56a-dec7-4944-9bc0-41d19efe1e5e"
+      ],
+      "required_roles": [
+        "human_reviewer"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Complete a restricted evidence pack with the audit export, exception workflow diagram, automatic expiration and reapproval behavior, audit-trail ownership, and the confirmed expiration owner; enforce the approved reviewer list before distribution.",
+        "Apply permission filtering and audience-specific redaction to every internal brief containing restricted research evidence or sensitive pricing.",
+        "Complete the audit export and exception-workflow evidence pack, including expiration-owner confirmation, before using security evidence to support the commercial package.",
+        "Enforce restricted-source permissions and limit the internal brief to authorized reviewers; use only separately approved external-safe process language if communication is required."
+      ],
+      "rationales": [
+        "Security and research IT require evidence of segmentation, auditability, and expiration controls, while the expiration owner and reviewer permissions remain unresolved.",
+        "The account evidence requires narrow access to restricted workflow details, while policy prohibits disclosure when source access is not authorized.",
+        "The audit export sample is complete, but expiration-owner confirmation remains missing and restricted workflow evidence is a material renewal dependency.",
+        "The account and call sources are restricted, and the team explicitly requires permission checks before retrieval, summary generation, or external sharing."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-019",
+        "EV-GONG-SUMMARY-CALL-024",
+        "EV-GONG-SUMMARY-CALL-026",
+        "EV-GONG-TRANSCRIPT-CALL-027",
+        "EV-POLICY-OPP-1003-DEAL-DESK",
+        "EV-GONG-SUMMARY-CALL-020"
+      ],
+      "reason_codes": [
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer for 4 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:13:56.825266Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "62920d43-3fb6-48e6-a20d-d61e3c31cfb6",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "grouping_key": "roles:deal_desk+human_reviewer+legal",
+      "recommendation_ids": [
+        "199f7638-48d7-45d0-9258-b7717bb9148b",
+        "a3a94cca-6119-4ac7-8b40-31fde41025ab"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "legal"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Route the 12 discount and -3 renewal uplift alternative package through legal and management approval, with explicit inclusion and exclusion terms for the package.",
+        "Prepare an internal comparison of the payment-flexibility option, the controls-preserving package option, and the unapproved aggressive scenario, including approval gates and commercial, security, and legal trade-offs."
+      ],
+      "rationales": [
+        "The alternative package remains pending legal and manager approval and includes liability-language and restricted-evidence dependencies that require precise terms.",
+        "The account team requested internal-only scenarios, procurement wants a written package comparison, and security and legal constraints must remain visible in the decision process."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-PRICING-PN-4005",
+        "EV-POLICY-OPP-1003-DEAL-DESK",
+        "EV-GONG-TRANSCRIPT-CALL-023",
+        "EV-GONG-TRANSCRIPT-CALL-027",
+        "EV-GONG-SUMMARY-CALL-025"
+      ],
+      "reason_codes": [
+        "discount_above_10_percent",
+        "negative_renewal_uplift",
+        "legal_or_liability_change",
+        "conflicting_evidence",
+        "missing_source_data",
+        "pricing_recommendation"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 3",
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, legal for 2 grouped recommendation(s) because they trigger: discount_above_10_percent, negative_renewal_uplift, legal_or_liability_change, conflicting_evidence, missing_source_data, pricing_recommendation. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:13:56.833639Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "5c745732-8d70-4685-a717-747e7a84aa03",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "grouping_key": "roles:human_reviewer+legal",
+      "recommendation_ids": [
+        "5f6f8e49-d64e-4ad7-b580-505631b4541a"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "legal"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Keep all liability and concession language in internal review until legal and Deal Desk approval is recorded; do not generate customer-facing concession language meanwhile."
+      ],
+      "rationales": [
+        "Legal has not approved liability language, the pricing positions remain pending, and policy prohibits customer-facing concession language without approved status."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-023",
+        "EV-GONG-TRANSCRIPT-CALL-027",
+        "EV-SLACK-SLACK-1003-01",
+        "EV-POLICY-OPP-1003-DEAL-DESK"
+      ],
+      "reason_codes": [
+        "legal_or_liability_change",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, legal for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:13:56.843754Z",
+      "decided_at": null
+    }
+  ],
+  "trace_event_ids": [
+    "14373bb7-e5c3-4262-897a-94d1e1fce7f7",
+    "720ad5a1-fd5e-4e7b-8331-bbe50a020b2f",
+    "6cc8b06b-9daa-401c-bf5f-0c4d39d74e52",
+    "e9d804a6-d3ff-44dc-bbfd-615242ce1e17",
+    "db913898-90a2-4201-b299-dae702b8c1c5",
+    "53229ffc-b019-4b54-b5b1-38fddff491de",
+    "0fdecaf7-d12b-4edc-b2fd-cc8cfefb55c0",
+    "d12b523c-c9c6-4aef-9fca-0c3bd06e4c31",
+    "cb3ebdb3-b15a-4285-b691-b7eb97ec0f2c",
+    "7b90b616-d8c2-42be-a1a2-377467903164",
+    "c99a47bd-4a33-4f32-b335-d05596645ca5",
+    "f26bc064-4637-473b-be39-4511eff9e1cb",
+    "c6296db2-a6d3-4681-a696-a3d92c39741b",
+    "2fc43071-83ba-4deb-9222-10707b91130d",
+    "3aabfeb7-8ca4-4f5e-b15e-4fe3281e1402",
+    "4e844511-ecb3-4e4c-a9e4-35cdc805ae34",
+    "367fcce7-894d-4e6f-80a1-e2fa04354383",
+    "4f80c12c-4d03-4f43-b044-ec82438e66c2",
+    "2dad25d5-0ab2-4813-ad9b-0291db1a34cb",
+    "dafcc268-735e-45f0-93ef-b5e5cc529800",
+    "81fe2c28-b319-4826-ac1b-e1171c2439bf",
+    "abfe4ec4-a9a3-46f7-bee9-b9a585291f50",
+    "13c33bbd-87e9-4479-9ce6-84da84c40e3e",
+    "f60e4014-1695-4e73-a18b-09fd661079d8",
+    "5a2e8c1b-962b-4f8f-8063-d780b4326498",
+    "89df1533-afe3-455c-adfa-1c65c1c38a8c",
+    "fd27e939-49b5-40be-bcfa-e72af3324f0c",
+    "cf5152fb-9cd4-4185-8204-29477fd5b52a",
+    "7c41d3cc-a058-4175-93e9-aadba61de2a8",
+    "057b3e3c-64a1-4174-a747-f5b9081d6e54",
+    "86c936f4-591f-4d0b-9864-ec2cb0598368",
+    "3b57feb5-faa2-4e44-b3f4-960995bc536d",
+    "73aaec4b-98d4-4f91-9d3b-a9e5c05eae39",
+    "c19534ef-4233-4808-a963-3ec55fe84b1a",
+    "d3a33454-b48b-461f-8640-e726458e4b28",
+    "6e8f09ae-560a-43d5-bfb9-a517571428f3"
+  ],
+  "safe_error": null,
+  "created_at": "2026-08-30T13:13:56.910874Z",
+  "completed_at": "2026-08-30T13:13:56.910844Z"
+}

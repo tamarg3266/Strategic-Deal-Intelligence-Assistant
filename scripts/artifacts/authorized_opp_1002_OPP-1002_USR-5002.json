@@ -1,0 +1,544 @@
+{
+  "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+  "request": {
+    "opportunity_id": "OPP-1002",
+    "requester_id": "USR-5002",
+    "user_input": "Generate an internal Strategic Deal Intelligence Brief."
+  },
+  "status": "approval_required",
+  "brief": {
+    "status": "approval_required",
+    "sections": {
+      "Deal Snapshot": "- Salesforce records the opportunity at stage 3.0 Prove, with ACV 2384000, TCV 7152000, close date 2026-05-29, forecast category Best Case, probability 54, owner Owen Patel, and CRM next step to deliver the reporting proof pack and factory cutover risk register by 2026-05-08. [EV-SF-OPPORTUNITY-OPP-1002] (confidence: high)\n- The proof is directionally successful, but commercial progression remains conditional on a reporting export retest and an incident ownership map; the CIO stated that commercial approval has not yet been given. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-018, EV-SLACK-SLACK-1002-01] (confidence: high)\n- Finance is open to a staged payment structure tied to proof acceptance and first-factory rollout readiness, while requiring a cap on services and concrete payment milestones. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-SLACK-SLACK-1002-02, EV-SF-CONTACT-OPP-1002-CON-3009] (confidence: high)\n- The pricing record lists current ACV 1850000, proposed ACV 2384000, requested discount 6, renewal uplift 29, and a commercial assumption of staged factory rollout with minimum enablement scope; its recorded approval status is not_required. [EV-PRICING-PN-4003] (confidence: high)\n- Enablement is a commercial risk: the rollout requires bounded coverage for operators and supervisors, including a capped package with named deliverables, while finance will not accept an open-ended services line item. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-SLACK-SLACK-1002-02] (confidence: high)\n- Buyer support is positive but conditional: the champion supports expansion, the CIO supports it if operational risk is addressed, and operations requires export validation and ownership clarity before sign-off. [EV-SF-CONTACT-OPP-1002-CON-3006, EV-SF-CONTACT-OPP-1002-CON-3007, EV-SF-CONTACT-OPP-1002-CON-3008, EV-GONG-TRANSCRIPT-CALL-018] (confidence: high)\n- The primary competitive pressure is perceived operational simplicity from EdgeSphere Secure, not evidence that the competitor provides equivalent segmentation depth. [EV-SF-OPPORTUNITY-OPP-1002, EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-012] (confidence: medium)\n- Salesforce records approval_required as false, while conversational evidence shows that buyer-side commercial approval remains conditional on remediation items and finance terms; these are different recorded positions and should not be conflated. [EV-SF-OPPORTUNITY-OPP-1002, EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-018] (confidence: high)",
+      "Executive Summary": "- The opportunity is recorded at stage 3.0 Prove and Best Case, with the next step focused on the reporting proof pack and factory cutover risk register. [EV-SF-OPPORTUNITY-OPP-1002] (confidence: high)\n- The proof is directionally successful, but buyer-side commercial approval remains conditional on a reporting export retest and an incident ownership map. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-018, EV-SLACK-SLACK-1002-01] (confidence: high)\n- Finance is open to staged payments tied to proof acceptance and first-factory rollout readiness, but requires concrete milestones and a services cap. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-SLACK-SLACK-1002-02, EV-SF-CONTACT-OPP-1002-CON-3009] (confidence: high)\n- The services cap may conflict with the enablement coverage needed for factory adoption, particularly night-shift training and post-cutover support. [EV-SLACK-SLACK-1002-02, EV-GONG-SUMMARY-CALL-017, EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-014] (confidence: high)",
+      "Buyer Goals and Business Drivers": "- Meridian\u2019s primary goal is to protect factory uptime and reduce production-line connectivity risk, with proof focused on failover visibility and operational impact. [EV-GONG-TRANSCRIPT-CALL-010, EV-GONG-SUMMARY-CALL-010] (confidence: high)\n- The buyer prefers a staged factory rollout supported by plant-specific evidence, representative factory selection, and shift-friendly operating procedures. [EV-GONG-TRANSCRIPT-CALL-010, EV-GONG-SUMMARY-CALL-010] (confidence: high)\n- Finance requires a proof scorecard, staged payments, and bounded services rather than an unrestricted upfront expansion or open-ended enablement. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-SF-CONTACT-OPP-1002-CON-3009] (confidence: high)\n- Operational simplicity creates competitive pressure because plant staff perceive EdgeSphere Secure as simpler, but equivalent segmentation depth is not established. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-010] (confidence: medium)",
+      "Stakeholder Map": "- Julian Maro is identified in Salesforce as the economic buyer and linked expansion to handled factory downtime risk and improved reporting. [EV-SF-CONTACT-OPP-1002-CON-3006, EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017] (confidence: high)\n- Clara Esteves supports the rollout and can support conditional approval when remediation has an assigned owner and date, but will not carry an inadequately supported rollout alone. [EV-GONG-TRANSCRIPT-CALL-010, EV-GONG-TRANSCRIPT-CALL-018, EV-SF-CONTACT-OPP-1002-CON-3007] (confidence: high)\n- Niko Hart will support expansion if reporting export is successfully retested and the incident owner map is provided; this is an operations evaluator commitment, not collective customer approval. [EV-GONG-TRANSCRIPT-CALL-018, EV-SF-CONTACT-OPP-1002-CON-3008] (confidence: high)\n- Security sentiment is comparatively positive on segmentation, while additional data-protection reporting and policy-drift evidence remains requested. [EV-GONG-SUMMARY-CALL-016, EV-GONG-TRANSCRIPT-CALL-014, EV-SF-CONTACT-OPP-1002-CON-3010] (confidence: high)",
+      "Negotiation State": "- Commercial progression remains gated by export validation, ownership clarity, and a proof package that separates passed, remediation, and roadmap items. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-SLACK-SLACK-1002-01] (confidence: high)\n- Internal records indicate approval is not required, while customer evidence says commercial approval has not been granted; these describe different approval conditions and are not a conclusive approval state. [EV-PRICING-PN-4003, EV-SF-OPPORTUNITY-OPP-1002, EV-GONG-TRANSCRIPT-CALL-018, EV-POLICY-OPP-1002-DEAL-DESK] (confidence: high)\n- The pricing record contains requested discount and renewal-uplift terms, while staged payments and a services cap remain proposed concessions requiring precise internal modeling. [EV-PRICING-PN-4003, EV-GONG-SUMMARY-CALL-017, EV-GONG-TRANSCRIPT-CALL-018] (confidence: high)\n- Security accepted segmentation but still requests evidence on data-protection reporting and policy drift; external packaging must distinguish available capabilities from remediation and roadmap items. [EV-GONG-SUMMARY-CALL-016, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-011, EV-GONG-TRANSCRIPT-CALL-018, EV-POLICY-OPP-1002-DEAL-DESK] (confidence: high)",
+      "Recommended Next Actions": "- Assemble the proof closeout pack with the executive scorecard, reporting export retest plan, incident ownership map, and explicit separation of passed, remediation, and roadmap items. Owner: Account Executive. Rationale: Commercial progression is conditional on the export retest and ownership map, and the buyer requested a packet that does not obscure yellow items or change after signature. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-SLACK-SLACK-1002-01] (confidence: high)\n- Model the staged commercial option using payment milestones tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package and no open-ended services scope. Owner: Commercial Analyst. Rationale: Finance accepts milestone payments in principle but requires a services cap, while the pricing record assumes staged rollout and minimum enablement scope. [EV-GONG-SUMMARY-CALL-017, EV-GONG-TRANSCRIPT-CALL-018, EV-PRICING-PN-4003, EV-SLACK-SLACK-1002-02] (confidence: high)\n- Route the unresolved commercial packet and conflicting approval signals to a human reviewer before any customer-facing concession or approval language is prepared. Owner: Deal Desk. Rationale: The deal has missing commercial data and conflicting CRM versus buyer-side approval signals; policy requires human review for low-confidence, conflicting, or incomplete source situations and prohibits customer-facing concession language without approved status. [EV-POLICY-OPP-1002-DEAL-DESK, EV-SF-OPPORTUNITY-OPP-1002, EV-GONG-TRANSCRIPT-CALL-018] (confidence: high)\n- Obtain the missing commercial inputs before finalizing the packet: retest outcome and ownership, payment milestone definitions, enablement cap, and confirmation of final pricing terms. Owner: Account Executive. Rationale: The evidence identifies required conditions and recorded pricing values but does not provide the final operational results, detailed payment schedule, services cap, or confirmation that the requested discount and renewal uplift are final terms. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-PRICING-PN-4003] (confidence: high)\n- Assemble a buyer-readable proof closeout packet separating passed items, remediation items, and roadmap items, with a blunt executive scorecard and explicit evidence for reporting export. Owner: Account Executive. Rationale: The buyer requested a measurable scorecard and clear separation of current capability from roadmap items, while reporting export remains a commercial condition. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-013] (confidence: high)\n- Coordinate and document the reporting export retest and incident-owner-map deliverables, including accountable owners, target dates, acceptance criteria, and the thirty-day ownership review. Owner: Solutions Engineering and Customer Success. Rationale: Operations sign-off and conditional approval depend on these remediation items, and ownership may become stale after rollout. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-018] (confidence: high)\n- Model staged payment tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package listing named deliverables and clearly identifying any unresolved commercial assumptions. Owner: Deal Desk and Finance Business Partner. Rationale: Finance is open to milestone payments but requires a cap, while operations requires sufficient enablement coverage for adoption. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-SLACK-SLACK-1002-02] (confidence: high)\n- Prepare a concise operational-readiness appendix covering the two-layer runbook, night-shift enablement, alert severity guidance, local-versus-central ownership, and policy-drift review cadence. Owner: Customer Success and Solutions Engineering. Rationale: Operations and plant systems view usability, handoffs, and ongoing ownership as rollout-risk controls, while security requires evidence that policy consistency is maintained. [EV-GONG-TRANSCRIPT-CALL-010, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-016] (confidence: high)\n- Validate the proof closeout package against the export retest, incident owner map, proof scorecard, and explicit separation of passed, remediation, and roadmap items. Owner: Solutions Engineering Lead. Rationale: Operations and finance have made these artifacts conditions for sign-off, and unresolved remediation may delay the commercial path if represented as roadmap work. [EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-018, EV-SLACK-SLACK-1002-01] (confidence: high)\n- Model the staged-payment and capped-enablement package against the recorded commercial terms, minimum rollout support, and applicable policy conditions; reconcile the conflicting approval indicators in the internal record. Owner: Sales Operations Analyst. Rationale: Finance supports milestone payments and a services cap, but insufficient enablement may undermine rollout success. Internal approval indicators also differ from the customer's conditional commercial status. [EV-PRICING-PN-4003, EV-GONG-SUMMARY-CALL-017, EV-GONG-TRANSCRIPT-CALL-018, EV-SLACK-SLACK-1002-02, EV-SF-OPPORTUNITY-OPP-1002, EV-POLICY-OPP-1002-DEAL-DESK] (confidence: high)\n- Validate the security evidence matrix for segmentation, policy drift, and data-protection reporting, marking each item as currently available, remediation-dependent, or roadmap before external packaging. Owner: Security Assurance Lead. Rationale: The security evaluator requested additional evidence, and policy treats customer-specific security language as legally sensitive before external use. [EV-GONG-SUMMARY-CALL-016, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-011, EV-GONG-TRANSCRIPT-CALL-018, EV-POLICY-OPP-1002-DEAL-DESK] (confidence: high)",
+      "Missing Information": "- Reporting export retest result, scheduled date, accountable owner, and acceptance criteria.\n- Incident ownership map completion and the agreed maintenance responsibility.\n- Final staged payment milestones and the precise commercial trigger for proof acceptance.\n- Final capped enablement scope, services cap, named deliverables, and associated commercial values.\n- Whether the recorded requested discount of 6 and renewal uplift of 29 are the final customer-facing commercial terms.\n- Formal buyer approval status after remediation items and finance conditions are addressed.\n- Confirmed owner and target date for the reporting export retest.\n- Acceptance criteria and evidence format for the incident ownership map.\n- Finance\u2019s acceptable services cap and the minimum enablement scope required for the first rollout.\n- Whether the first rollout can proceed conditionally if reporting export is limited to basic functionality.\n- Final evidence requirements for data-protection reporting and the recurring policy-drift review.\n- Completed reporting export retest results, target date, and accountable owner are not provided.\n- The staged payment amounts, milestone schedule, and numerical services cap are not provided.\n- The security evidence currently available for data-protection reporting is not clearly separated from roadmap items.\n- Final ownership and maintenance cadence for the incident owner map are not established.",
+      "Source Evidence": "- [EV-SF-OPPORTUNITY-OPP-1002] source=synthetic_data/salesforce/opportunities.tsv, opportunity_id=OPP-1002\n- [EV-GONG-TRANSCRIPT-CALL-018] source=synthetic_data/gong/transcripts/OPP-1002_CALL-018.md, call_id=CALL-018\n- [EV-GONG-SUMMARY-CALL-018] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-018\n- [EV-SLACK-SLACK-1002-01] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1002-01\n- [EV-GONG-SUMMARY-CALL-017] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-017\n- [EV-SLACK-SLACK-1002-02] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1002-02\n- [EV-SF-CONTACT-OPP-1002-CON-3009] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3009\n- [EV-PRICING-PN-4003] source=synthetic_data/pricing/pricing_notes.tsv, pricing_note_id=PN-4003\n- [EV-GONG-TRANSCRIPT-CALL-014] source=synthetic_data/gong/transcripts/OPP-1002_CALL-014.md, call_id=CALL-014\n- [EV-SF-CONTACT-OPP-1002-CON-3006] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3006\n- [EV-SF-CONTACT-OPP-1002-CON-3007] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3007\n- [EV-SF-CONTACT-OPP-1002-CON-3008] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3008\n- [EV-GONG-SUMMARY-CALL-012] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-012\n- [EV-GONG-SUMMARY-CALL-014] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-014\n- [EV-GONG-TRANSCRIPT-CALL-010] source=synthetic_data/gong/transcripts/OPP-1002_CALL-010.md, call_id=CALL-010\n- [EV-GONG-SUMMARY-CALL-010] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-010\n- [EV-GONG-SUMMARY-CALL-016] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-016\n- [EV-SF-CONTACT-OPP-1002-CON-3010] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3010\n- [EV-POLICY-OPP-1002-DEAL-DESK] source=synthetic_data/policies/deal_desk_policy.md, policy_id=DEAL-DESK-POLICY-V1\n- [EV-GONG-SUMMARY-CALL-011] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-011\n- [EV-GONG-SUMMARY-CALL-013] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-013",
+      "Confidence and Review Warnings": "- commercial_analyst reported 2 evidence conflict(s); human review is required.\n- buyer_signal_analyst reported 3 evidence conflict(s); human review is required.\n- risk_approval_analyst reported 2 evidence conflict(s); human review is required.\n- risk_approval_analyst produced 1 low-confidence finding(s).\n\nHuman approval gates:\n- Approval 8fc50455-d7ba-4029-99cf-e01873b473b0 requires human_reviewer for recommendations 8f8d3ade-0da7-44fd-9e36-63184ef3bc10, a8194be9-dbc3-45da-b3d9-9493e7d4e5aa: Human approval is required from human_reviewer for 2 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-SLACK-SLACK-1002-01, EV-GONG-SUMMARY-CALL-018\n- Approval 59045931-3786-471c-b6df-5cac5bc2e3b3 requires deal_desk, human_reviewer, sales_leader for recommendations 4c211a73-2abe-4789-b786-ddc64ddad0a7, 6bfca432-f8f9-401f-8ca9-9eea19402a67, 29562fe1-03e3-495f-96d4-f3a20b1d1ac1, 3ea60651-3e98-42e0-b384-e224750dae69: Human approval is required from deal_desk, human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, commercial_concession, conflicting_evidence, missing_source_data, customer_facing_language. The model cannot approve or publish these recommendations. Evidence: EV-GONG-SUMMARY-CALL-017, EV-GONG-TRANSCRIPT-CALL-018, EV-PRICING-PN-4003, EV-SLACK-SLACK-1002-02, EV-POLICY-OPP-1002-DEAL-DESK, EV-SF-OPPORTUNITY-OPP-1002\n- Approval fdab34ae-72a7-48cb-8ff1-5b07396233a2 requires deal_desk, human_reviewer for recommendations 6a58a922-f6a7-4f86-923b-28d00fbe6381: Human approval is required from deal_desk, human_reviewer for 1 grouped recommendation(s) because they trigger: pricing_recommendation, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-SUMMARY-CALL-017, EV-PRICING-PN-4003\n- Approval 626797c2-ded4-4a84-96f0-9725460cee92 requires human_reviewer, sales_leader for recommendations b0400434-6baf-4f50-8347-b7b44d21dd52, ae5f7399-e9c8-4465-9979-07c80f8cbf25, 0a6d9da9-9599-4835-8e12-c1ad5d671408: Human approval is required from human_reviewer, sales_leader for 3 grouped recommendation(s) because they trigger: customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-018, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-013, EV-GONG-SUMMARY-CALL-018, EV-GONG-TRANSCRIPT-CALL-010, EV-GONG-SUMMARY-CALL-016\n- Approval 88eb72bb-9d43-411c-9506-314c6637254c requires human_reviewer, legal for recommendations 11480f72-3931-4d23-a00a-7095ad27ec3a: Human approval is required from human_reviewer, legal for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-SUMMARY-CALL-016, EV-GONG-TRANSCRIPT-CALL-014, EV-GONG-SUMMARY-CALL-011, EV-GONG-TRANSCRIPT-CALL-018, EV-POLICY-OPP-1002-DEAL-DESK"
+    },
+    "cited_evidence_ids": [
+      "EV-SF-OPPORTUNITY-OPP-1002",
+      "EV-GONG-TRANSCRIPT-CALL-018",
+      "EV-GONG-SUMMARY-CALL-018",
+      "EV-SLACK-SLACK-1002-01",
+      "EV-GONG-SUMMARY-CALL-017",
+      "EV-SLACK-SLACK-1002-02",
+      "EV-SF-CONTACT-OPP-1002-CON-3009",
+      "EV-PRICING-PN-4003",
+      "EV-GONG-TRANSCRIPT-CALL-014",
+      "EV-SF-CONTACT-OPP-1002-CON-3006",
+      "EV-SF-CONTACT-OPP-1002-CON-3007",
+      "EV-SF-CONTACT-OPP-1002-CON-3008",
+      "EV-GONG-SUMMARY-CALL-012",
+      "EV-GONG-SUMMARY-CALL-014",
+      "EV-GONG-TRANSCRIPT-CALL-010",
+      "EV-GONG-SUMMARY-CALL-010",
+      "EV-GONG-SUMMARY-CALL-016",
+      "EV-SF-CONTACT-OPP-1002-CON-3010",
+      "EV-POLICY-OPP-1002-DEAL-DESK",
+      "EV-GONG-SUMMARY-CALL-011",
+      "EV-GONG-SUMMARY-CALL-013"
+    ],
+    "recommendations": [
+      {
+        "recommendation_id": "8f8d3ade-0da7-44fd-9e36-63184ef3bc10",
+        "action": "Assemble the proof closeout pack with the executive scorecard, reporting export retest plan, incident ownership map, and explicit separation of passed, remediation, and roadmap items.",
+        "rationale": "Commercial progression is conditional on the export retest and ownership map, and the buyer requested a packet that does not obscure yellow items or change after signature.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-SLACK-SLACK-1002-01"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "4c211a73-2abe-4789-b786-ddc64ddad0a7",
+        "action": "Model the staged commercial option using payment milestones tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package and no open-ended services scope.",
+        "rationale": "Finance accepts milestone payments in principle but requires a services cap, while the pricing record assumes staged rollout and minimum enablement scope.",
+        "owner_role": "Commercial Analyst",
+        "evidence_ids": [
+          "EV-GONG-SUMMARY-CALL-017",
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-PRICING-PN-4003",
+          "EV-SLACK-SLACK-1002-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "pricing",
+          "concession"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "6bfca432-f8f9-401f-8ca9-9eea19402a67",
+        "action": "Route the unresolved commercial packet and conflicting approval signals to a human reviewer before any customer-facing concession or approval language is prepared.",
+        "rationale": "The deal has missing commercial data and conflicting CRM versus buyer-side approval signals; policy requires human review for low-confidence, conflicting, or incomplete source situations and prohibits customer-facing concession language without approved status.",
+        "owner_role": "Deal Desk",
+        "evidence_ids": [
+          "EV-POLICY-OPP-1002-DEAL-DESK",
+          "EV-SF-OPPORTUNITY-OPP-1002",
+          "EV-GONG-TRANSCRIPT-CALL-018"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "concession"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "6a58a922-f6a7-4f86-923b-28d00fbe6381",
+        "action": "Obtain the missing commercial inputs before finalizing the packet: retest outcome and ownership, payment milestone definitions, enablement cap, and confirmation of final pricing terms.",
+        "rationale": "The evidence identifies required conditions and recorded pricing values but does not provide the final operational results, detailed payment schedule, services cap, or confirmation that the requested discount and renewal uplift are final terms.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-SUMMARY-CALL-017",
+          "EV-PRICING-PN-4003"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "b0400434-6baf-4f50-8347-b7b44d21dd52",
+        "action": "Assemble a buyer-readable proof closeout packet separating passed items, remediation items, and roadmap items, with a blunt executive scorecard and explicit evidence for reporting export.",
+        "rationale": "The buyer requested a measurable scorecard and clear separation of current capability from roadmap items, while reporting export remains a commercial condition.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-GONG-SUMMARY-CALL-013"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "ae5f7399-e9c8-4465-9979-07c80f8cbf25",
+        "action": "Coordinate and document the reporting export retest and incident-owner-map deliverables, including accountable owners, target dates, acceptance criteria, and the thirty-day ownership review.",
+        "rationale": "Operations sign-off and conditional approval depend on these remediation items, and ownership may become stale after rollout.",
+        "owner_role": "Solutions Engineering and Customer Success",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-GONG-SUMMARY-CALL-018"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "29562fe1-03e3-495f-96d4-f3a20b1d1ac1",
+        "action": "Model staged payment tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package listing named deliverables and clearly identifying any unresolved commercial assumptions.",
+        "rationale": "Finance is open to milestone payments but requires a cap, while operations requires sufficient enablement coverage for adoption.",
+        "owner_role": "Deal Desk and Finance Business Partner",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-SUMMARY-CALL-017",
+          "EV-SLACK-SLACK-1002-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "concession",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "0a6d9da9-9599-4835-8e12-c1ad5d671408",
+        "action": "Prepare a concise operational-readiness appendix covering the two-layer runbook, night-shift enablement, alert severity guidance, local-versus-central ownership, and policy-drift review cadence.",
+        "rationale": "Operations and plant systems view usability, handoffs, and ongoing ownership as rollout-risk controls, while security requires evidence that policy consistency is maintained.",
+        "owner_role": "Customer Success and Solutions Engineering",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-010",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-GONG-SUMMARY-CALL-016"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing",
+          "security"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "a8194be9-dbc3-45da-b3d9-9493e7d4e5aa",
+        "action": "Validate the proof closeout package against the export retest, incident owner map, proof scorecard, and explicit separation of passed, remediation, and roadmap items.",
+        "rationale": "Operations and finance have made these artifacts conditions for sign-off, and unresolved remediation may delay the commercial path if represented as roadmap work.",
+        "owner_role": "Solutions Engineering Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-GONG-SUMMARY-CALL-018",
+          "EV-SLACK-SLACK-1002-01"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "3ea60651-3e98-42e0-b384-e224750dae69",
+        "action": "Model the staged-payment and capped-enablement package against the recorded commercial terms, minimum rollout support, and applicable policy conditions; reconcile the conflicting approval indicators in the internal record.",
+        "rationale": "Finance supports milestone payments and a services cap, but insufficient enablement may undermine rollout success. Internal approval indicators also differ from the customer's conditional commercial status.",
+        "owner_role": "Sales Operations Analyst",
+        "evidence_ids": [
+          "EV-PRICING-PN-4003",
+          "EV-GONG-SUMMARY-CALL-017",
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-SLACK-SLACK-1002-02",
+          "EV-SF-OPPORTUNITY-OPP-1002",
+          "EV-POLICY-OPP-1002-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession"
+        ],
+        "proposed_discount_percent": 6.0,
+        "proposed_renewal_uplift_percent": 29.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "11480f72-3931-4d23-a00a-7095ad27ec3a",
+        "action": "Validate the security evidence matrix for segmentation, policy drift, and data-protection reporting, marking each item as currently available, remediation-dependent, or roadmap before external packaging.",
+        "rationale": "The security evaluator requested additional evidence, and policy treats customer-specific security language as legally sensitive before external use.",
+        "owner_role": "Security Assurance Lead",
+        "evidence_ids": [
+          "EV-GONG-SUMMARY-CALL-016",
+          "EV-GONG-TRANSCRIPT-CALL-014",
+          "EV-GONG-SUMMARY-CALL-011",
+          "EV-GONG-TRANSCRIPT-CALL-018",
+          "EV-POLICY-OPP-1002-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security",
+          "legal"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      }
+    ],
+    "pending_approval_ids": [
+      "8fc50455-d7ba-4029-99cf-e01873b473b0",
+      "59045931-3786-471c-b6df-5cac5bc2e3b3",
+      "fdab34ae-72a7-48cb-8ff1-5b07396233a2",
+      "626797c2-ded4-4a84-96f0-9725460cee92",
+      "88eb72bb-9d43-411c-9506-314c6637254c"
+    ]
+  },
+  "approvals": [
+    {
+      "approval_id": "8fc50455-d7ba-4029-99cf-e01873b473b0",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "grouping_key": "roles:human_reviewer",
+      "recommendation_ids": [
+        "8f8d3ade-0da7-44fd-9e36-63184ef3bc10",
+        "a8194be9-dbc3-45da-b3d9-9493e7d4e5aa"
+      ],
+      "required_roles": [
+        "human_reviewer"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Assemble the proof closeout pack with the executive scorecard, reporting export retest plan, incident ownership map, and explicit separation of passed, remediation, and roadmap items.",
+        "Validate the proof closeout package against the export retest, incident owner map, proof scorecard, and explicit separation of passed, remediation, and roadmap items."
+      ],
+      "rationales": [
+        "Commercial progression is conditional on the export retest and ownership map, and the buyer requested a packet that does not obscure yellow items or change after signature.",
+        "Operations and finance have made these artifacts conditions for sign-off, and unresolved remediation may delay the commercial path if represented as roadmap work."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-018",
+        "EV-GONG-TRANSCRIPT-CALL-014",
+        "EV-SLACK-SLACK-1002-01",
+        "EV-GONG-SUMMARY-CALL-018"
+      ],
+      "reason_codes": [
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer for 2 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:12:59.959561Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "59045931-3786-471c-b6df-5cac5bc2e3b3",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "grouping_key": "roles:deal_desk+human_reviewer+sales_leader",
+      "recommendation_ids": [
+        "4c211a73-2abe-4789-b786-ddc64ddad0a7",
+        "6bfca432-f8f9-401f-8ca9-9eea19402a67",
+        "29562fe1-03e3-495f-96d4-f3a20b1d1ac1",
+        "3ea60651-3e98-42e0-b384-e224750dae69"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Model the staged commercial option using payment milestones tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package and no open-ended services scope.",
+        "Route the unresolved commercial packet and conflicting approval signals to a human reviewer before any customer-facing concession or approval language is prepared.",
+        "Model staged payment tied to proof acceptance and first-factory rollout readiness, with a bounded enablement package listing named deliverables and clearly identifying any unresolved commercial assumptions.",
+        "Model the staged-payment and capped-enablement package against the recorded commercial terms, minimum rollout support, and applicable policy conditions; reconcile the conflicting approval indicators in the internal record."
+      ],
+      "rationales": [
+        "Finance accepts milestone payments in principle but requires a services cap, while the pricing record assumes staged rollout and minimum enablement scope.",
+        "The deal has missing commercial data and conflicting CRM versus buyer-side approval signals; policy requires human review for low-confidence, conflicting, or incomplete source situations and prohibits customer-facing concession language without approved status.",
+        "Finance is open to milestone payments but requires a cap, while operations requires sufficient enablement coverage for adoption.",
+        "Finance supports milestone payments and a services cap, but insufficient enablement may undermine rollout success. Internal approval indicators also differ from the customer's conditional commercial status."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-SUMMARY-CALL-017",
+        "EV-GONG-TRANSCRIPT-CALL-018",
+        "EV-PRICING-PN-4003",
+        "EV-SLACK-SLACK-1002-02",
+        "EV-POLICY-OPP-1002-DEAL-DESK",
+        "EV-SF-OPPORTUNITY-OPP-1002"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "commercial_concession",
+        "conflicting_evidence",
+        "missing_source_data",
+        "customer_facing_language"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: pricing_recommendation, commercial_concession, conflicting_evidence, missing_source_data, customer_facing_language. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:12:59.968036Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "fdab34ae-72a7-48cb-8ff1-5b07396233a2",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "grouping_key": "roles:deal_desk+human_reviewer",
+      "recommendation_ids": [
+        "6a58a922-f6a7-4f86-923b-28d00fbe6381"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Obtain the missing commercial inputs before finalizing the packet: retest outcome and ownership, payment milestone definitions, enablement cap, and confirmation of final pricing terms."
+      ],
+      "rationales": [
+        "The evidence identifies required conditions and recorded pricing values but does not provide the final operational results, detailed payment schedule, services cap, or confirmation that the requested discount and renewal uplift are final terms."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-018",
+        "EV-GONG-SUMMARY-CALL-017",
+        "EV-PRICING-PN-4003"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer for 1 grouped recommendation(s) because they trigger: pricing_recommendation, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:12:59.976404Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "626797c2-ded4-4a84-96f0-9725460cee92",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "grouping_key": "roles:human_reviewer+sales_leader",
+      "recommendation_ids": [
+        "b0400434-6baf-4f50-8347-b7b44d21dd52",
+        "ae5f7399-e9c8-4465-9979-07c80f8cbf25",
+        "0a6d9da9-9599-4835-8e12-c1ad5d671408"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Assemble a buyer-readable proof closeout packet separating passed items, remediation items, and roadmap items, with a blunt executive scorecard and explicit evidence for reporting export.",
+        "Coordinate and document the reporting export retest and incident-owner-map deliverables, including accountable owners, target dates, acceptance criteria, and the thirty-day ownership review.",
+        "Prepare a concise operational-readiness appendix covering the two-layer runbook, night-shift enablement, alert severity guidance, local-versus-central ownership, and policy-drift review cadence."
+      ],
+      "rationales": [
+        "The buyer requested a measurable scorecard and clear separation of current capability from roadmap items, while reporting export remains a commercial condition.",
+        "Operations sign-off and conditional approval depend on these remediation items, and ownership may become stale after rollout.",
+        "Operations and plant systems view usability, handoffs, and ongoing ownership as rollout-risk controls, while security requires evidence that policy consistency is maintained."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-018",
+        "EV-GONG-TRANSCRIPT-CALL-014",
+        "EV-GONG-SUMMARY-CALL-013",
+        "EV-GONG-SUMMARY-CALL-018",
+        "EV-GONG-TRANSCRIPT-CALL-010",
+        "EV-GONG-SUMMARY-CALL-016"
+      ],
+      "reason_codes": [
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, sales_leader for 3 grouped recommendation(s) because they trigger: customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:12:59.984701Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "88eb72bb-9d43-411c-9506-314c6637254c",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "grouping_key": "roles:human_reviewer+legal",
+      "recommendation_ids": [
+        "11480f72-3931-4d23-a00a-7095ad27ec3a"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "legal"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Validate the security evidence matrix for segmentation, policy drift, and data-protection reporting, marking each item as currently available, remediation-dependent, or roadmap before external packaging."
+      ],
+      "rationales": [
+        "The security evaluator requested additional evidence, and policy treats customer-specific security language as legally sensitive before external use."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-SUMMARY-CALL-016",
+        "EV-GONG-TRANSCRIPT-CALL-014",
+        "EV-GONG-SUMMARY-CALL-011",
+        "EV-GONG-TRANSCRIPT-CALL-018",
+        "EV-POLICY-OPP-1002-DEAL-DESK"
+      ],
+      "reason_codes": [
+        "legal_or_liability_change",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, legal for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:12:59.995080Z",
+      "decided_at": null
+    }
+  ],
+  "trace_event_ids": [
+    "8b64590c-04ed-46ff-a250-13652000b666",
+    "c1ccaee2-61bc-451e-9513-d803a1687978",
+    "f98ba3c6-a1d2-4326-91b7-71927debf756",
+    "2c2fb974-9ea0-4b7c-b6eb-b0d1749f2691",
+    "7af5a8a0-e8bb-4cfb-a00a-5ffec4303e1d",
+    "929c24f4-b8c9-4d93-9375-e8c982747bc4",
+    "68733125-e7bc-4878-a41c-0484873df59d",
+    "2cf7f644-628d-4bd9-b8d4-ba498735a7e7",
+    "cd0b890f-4063-4ec8-bfdd-520831403c8f",
+    "c3b4da41-197e-4487-ad88-a80ad3e30dc8",
+    "88264c4a-37d4-41dd-81ee-feba4fcf9bd9",
+    "67e4846d-860e-49ac-bf7b-f564a3535d81",
+    "8fea5a99-7105-42ee-bb38-f584c1ea08ba",
+    "d37e04b9-1c08-4b9a-ae2d-d69add10d830",
+    "e0767c91-7b16-41d0-b8e8-c9b6a05ee58e",
+    "55741912-8e30-4e0e-a9a2-a421cf8b99f0",
+    "edc0b695-da36-430c-96da-44a868a27834",
+    "30b46fb8-08e0-4cbb-aae8-3a2fb469171a",
+    "1de16012-fdd7-4252-9451-01b30c83d7e1",
+    "c1398733-43e1-4fea-ad02-477442dffe01",
+    "3ef8a60b-e6ac-473f-b54d-0b36b8cbd37a",
+    "77161540-c971-4643-ae1e-1cafb1a38bd7",
+    "4360cdee-0088-4227-9bad-adeee1eed88f",
+    "0eab2b52-4c4c-4138-a394-58df000e19d5",
+    "06af8301-450b-4fdc-b8d0-a055b584206d",
+    "e6bad790-4948-4b7c-a031-03d271e8c3ed",
+    "9e14e990-8093-4232-9912-d0274adee5b8",
+    "7566a826-8de1-4546-a7bf-5ab4b8b4bd7e",
+    "5b6ab191-4c18-42e1-b0b4-6d6bed7fde54",
+    "31ff8d1f-4dcc-4528-ab63-3ec65647611e",
+    "ce6adf49-2c70-442b-aa8b-be3ddc0956c3",
+    "0f5755c3-b68e-4cfb-a54c-e2dec3fd39fb",
+    "ba91a47a-fde4-4bc3-a3a3-56ad79f10a31"
+  ],
+  "safe_error": null,
+  "created_at": "2026-08-30T13:13:00.079100Z",
+  "completed_at": "2026-08-30T13:13:00.079073Z"
+}

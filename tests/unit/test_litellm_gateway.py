@@ -25,9 +25,13 @@ class StubResponse:
 class StubAsyncClient:
     init_kwargs: dict[str, object] = {}
     request_json: dict[str, object] = {}
+    request_payloads: list[dict[str, object]] = []
     request_headers: dict[str, str] = {}
+    init_count = 0
+    close_count = 0
 
     def __init__(self, **kwargs: object) -> None:
+        type(self).init_count += 1
         type(self).init_kwargs = kwargs
 
     async def __aenter__(self) -> "StubAsyncClient":
@@ -45,11 +49,18 @@ class StubAsyncClient:
     ) -> StubResponse:
         assert url == "https://litellm.example.test/v1/chat/completions"
         type(self).request_json = json
+        type(self).request_payloads.append(json)
         type(self).request_headers = headers
         return StubResponse()
 
+    async def aclose(self) -> None:
+        type(self).close_count += 1
+
 
 def test_gateway_sends_json_mode_tls_and_bearer_configuration(monkeypatch) -> None:
+    StubAsyncClient.init_count = 0
+    StubAsyncClient.close_count = 0
+    StubAsyncClient.request_payloads = []
     monkeypatch.setattr(
         "deal_intel.model_runtime.litellm.httpx.AsyncClient",
         StubAsyncClient,
@@ -62,8 +73,19 @@ def test_gateway_sends_json_mode_tls_and_bearer_configuration(monkeypatch) -> No
         schema_repair_attempts=0,
     )
 
-    output = asyncio.run(
-        gateway.generate_structured(
+    async def invoke_twice() -> ProbeOutput:
+        output = await gateway.generate_structured(
+            model_alias="extraction_model",
+            system="system",
+            developer="developer",
+            user="user",
+            output_schema=ProbeOutput,
+            run_id="run-1",
+            agent_name="probe",
+            prompt_version="probe.v1",
+            max_output_tokens=1800,
+        )
+        await gateway.generate_structured(
             model_alias="extraction_model",
             system="system",
             developer="developer",
@@ -73,13 +95,22 @@ def test_gateway_sends_json_mode_tls_and_bearer_configuration(monkeypatch) -> No
             agent_name="probe",
             prompt_version="probe.v1",
         )
-    )
+        await gateway.aclose()
+        return output
+
+    output = asyncio.run(invoke_twice())
 
     response_format = StubAsyncClient.request_json["response_format"]
     assert isinstance(response_format, dict)
     assert response_format == {"type": "json_object"}
     assert StubAsyncClient.init_kwargs["verify"] is False
     assert StubAsyncClient.request_headers == {"Authorization": "Bearer secret"}
+    assert StubAsyncClient.init_count == 1
+    assert StubAsyncClient.close_count == 1
+    assert [payload["max_tokens"] for payload in StubAsyncClient.request_payloads] == [
+        1800,
+        4000,
+    ]
     assert output.status == "ready"
 
 

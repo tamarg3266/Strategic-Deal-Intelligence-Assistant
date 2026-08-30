@@ -1,0 +1,48 @@
+{
+  "generated_at_utc": "2026-08-30T13:13:56.923328+00:00",
+  "generator": "scripts/generate_deliverables.py",
+  "config_path": "config/default.yaml",
+  "artifacts_folder": "scripts/artifacts",
+  "required_scenario_count": 3,
+  "actual_scenario_count": 3,
+  "scenarios": [
+    {
+      "scenario_id": "authorized_opp_1001",
+      "opportunity_id": "OPP-1001",
+      "requester_id": "USR-5001",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "status": "approval_required",
+      "safe_error": null,
+      "artifact_file": "authorized_opp_1001_OPP-1001_USR-5001.json"
+    },
+    {
+      "scenario_id": "authorized_opp_1002",
+      "opportunity_id": "OPP-1002",
+      "requester_id": "USR-5002",
+      "run_id": "2a015cca-1ab9-4e2b-8eb1-b1450e0de17a",
+      "status": "approval_required",
+      "safe_error": null,
+      "artifact_file": "authorized_opp_1002_OPP-1002_USR-5002.json"
+    },
+    {
+      "scenario_id": "authorized_opp_1003",
+      "opportunity_id": "OPP-1003",
+      "requester_id": "USR-5003",
+      "run_id": "bddb524e-e52a-4e4e-b51a-2b4466a8f774",
+      "status": "approval_required",
+      "safe_error": null,
+      "artifact_file": "authorized_opp_1003_OPP-1003_USR-5003.json"
+    }
+  ],
+  "status_counts": {
+    "approval_required": 3
+  },
+  "verification": {
+    "all_artifacts_present": true,
+    "all_run_ids_present": true,
+    "all_statuses_present": true,
+    "unique_run_ids": true,
+    "all_scenario_json_valid": true,
+    "failed_scenarios": []
+  }
+}

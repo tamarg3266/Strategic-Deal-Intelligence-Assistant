@@ -29,6 +29,7 @@ class LiteLLMGateway:
         transport_retries: int = 2,
         retry_backoff_seconds: float = 1,
         invocation_observer: InvocationObserver | None = None,
+        client: httpx.AsyncClient | None = None,
     ) -> None:
         self.endpoint = endpoint.rstrip("/")
         self.aliases = aliases
@@ -41,6 +42,11 @@ class LiteLLMGateway:
         self.transport_retries = transport_retries
         self.retry_backoff_seconds = retry_backoff_seconds
         self.invocation_observer = invocation_observer
+        self._owns_client = client is None
+        self._client = client or httpx.AsyncClient(
+            timeout=self.timeout_seconds,
+            verify=self.verify_tls,
+        )
 
     async def generate_structured(
         self,
@@ -53,6 +59,7 @@ class LiteLLMGateway:
         run_id: str,
         agent_name: str,
         prompt_version: str,
+        max_output_tokens: int | None = None,
     ) -> OutputT:
         if model_alias not in self.aliases:
             raise KeyError(f"Unknown model alias: {model_alias}")
@@ -73,6 +80,7 @@ class LiteLLMGateway:
         started = time.perf_counter()
         last_error: Exception | None = None
         usage: dict[str, int | float] = {}
+        output_token_limit = max_output_tokens or self.max_output_tokens
 
         schema_attempt = 0
         transport_retry = 0
@@ -83,19 +91,15 @@ class LiteLLMGateway:
                     "messages": messages,
                     "response_format": {"type": "json_object"},
                     "temperature": self.temperature,
-                    "max_tokens": self.max_output_tokens,
+                    "max_tokens": output_token_limit,
                 }
                 headers = {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
-                async with httpx.AsyncClient(
-                    timeout=self.timeout_seconds,
-                    verify=self.verify_tls,
-                ) as client:
-                    response = await client.post(
-                        f"{self.endpoint}/v1/chat/completions",
-                        json=payload,
-                        headers=headers,
-                    )
-                    response.raise_for_status()
+                response = await self._client.post(
+                    f"{self.endpoint}/v1/chat/completions",
+                    json=payload,
+                    headers=headers,
+                )
+                response.raise_for_status()
                 body = response.json()
                 usage = body.get("usage") or {}
                 if body.get("response_cost") is not None:
@@ -110,6 +114,7 @@ class LiteLLMGateway:
                     prompt_version=prompt_version,
                     input_hash=input_hash,
                     output_schema=output_schema.__name__,
+                    max_output_tokens=output_token_limit,
                     started=started,
                     usage=usage,
                     success=True,
@@ -148,12 +153,17 @@ class LiteLLMGateway:
             prompt_version=prompt_version,
             input_hash=input_hash,
             output_schema=output_schema.__name__,
+            max_output_tokens=output_token_limit,
             started=started,
             usage=usage,
             success=False,
             error_type=self._error_type(last_error),
         )
         raise RuntimeError("Model generation failed validation or transport checks") from last_error
+
+    async def aclose(self) -> None:
+        if self._owns_client:
+            await self._client.aclose()
 
     def _observe(
         self,
@@ -165,6 +175,7 @@ class LiteLLMGateway:
         prompt_version: str,
         input_hash: str,
         output_schema: str,
+        max_output_tokens: int,
         started: float,
         usage: dict[str, int | float],
         success: bool,
@@ -181,6 +192,7 @@ class LiteLLMGateway:
                 prompt_version=prompt_version,
                 input_hash=input_hash,
                 output_schema=output_schema,
+                max_output_tokens=max_output_tokens,
                 latency_ms=int((time.perf_counter() - started) * 1000),
                 input_tokens=self._integer_usage(usage.get("prompt_tokens")),
                 output_tokens=self._integer_usage(usage.get("completion_tokens")),

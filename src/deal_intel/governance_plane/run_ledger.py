@@ -83,11 +83,25 @@ class RunLedger:
                     recommendation_id TEXT NOT NULL,
                     model_alias TEXT NOT NULL,
                     prompt_version TEXT NOT NULL,
+                    reviewer_role TEXT NOT NULL,
                     payload_json TEXT NOT NULL,
                     created_at TEXT NOT NULL
                 );
-                CREATE UNIQUE INDEX IF NOT EXISTS idx_feedback_approval
-                    ON human_feedback(approval_id);
+                """
+            )
+            feedback_columns = {
+                row["name"]
+                for row in conn.execute("PRAGMA table_info(human_feedback)").fetchall()
+            }
+            if "reviewer_role" not in feedback_columns:
+                conn.execute(
+                    "ALTER TABLE human_feedback ADD COLUMN reviewer_role TEXT NOT NULL DEFAULT ''"
+                )
+            conn.execute("DROP INDEX IF EXISTS idx_feedback_approval")
+            conn.execute(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS idx_feedback_approval_reviewer
+                ON human_feedback(approval_id, reviewer_role)
                 """
             )
 
@@ -187,8 +201,8 @@ class RunLedger:
                 (
                     approval.approval_id,
                     approval.run_id,
-                    approval.recommendation_id,
-                    approval.required_role,
+                    approval.recommendation_ids[0],
+                    ",".join(approval.required_roles),
                     approval.status,
                     approval.model_dump_json(),
                     approval.created_at.isoformat(),
@@ -220,17 +234,34 @@ class RunLedger:
         decision: ApprovalDecisionRecord,
         feedback: HumanFeedbackRecord,
     ) -> None:
-        updated = approval.model_copy(
-            update={"status": decision.decision, "decided_at": decision.decided_at}
-        )
         with self.ledger.connect() as conn:
             current = conn.execute(
-                "SELECT status FROM approvals WHERE approval_id = ?", (approval.approval_id,)
+                "SELECT status, payload_json FROM approvals WHERE approval_id = ?",
+                (approval.approval_id,),
             ).fetchone()
             if current is None:
                 raise KeyError("approval_not_found")
             if current["status"] != "pending":
                 raise ValueError("approval_already_decided")
+            persisted = ApprovalRequest.model_validate_json(current["payload_json"])
+            if decision.reviewer_role in persisted.approved_roles:
+                raise ValueError("reviewer_role_already_decided")
+
+            approved_roles = list(persisted.approved_roles)
+            status = decision.decision
+            decided_at = decision.decided_at
+            if decision.decision == "approved":
+                approved_roles.append(decision.reviewer_role)
+                if set(approved_roles) != set(persisted.required_roles):
+                    status = "pending"
+                    decided_at = None
+            updated = persisted.model_copy(
+                update={
+                    "approved_roles": approved_roles,
+                    "status": status,
+                    "decided_at": decided_at,
+                }
+            )
             conn.execute(
                 """
                 UPDATE approvals
@@ -238,9 +269,9 @@ class RunLedger:
                 WHERE approval_id = ?
                 """,
                 (
-                    decision.decision,
+                    status,
                     updated.model_dump_json(),
-                    decision.decided_at.isoformat(),
+                    decided_at.isoformat() if decided_at else None,
                     approval.approval_id,
                 ),
             )
@@ -266,16 +297,17 @@ class RunLedger:
                 """
                 INSERT INTO human_feedback(
                     feedback_id, approval_id, run_id, recommendation_id, model_alias,
-                    prompt_version, payload_json, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    prompt_version, reviewer_role, payload_json, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     feedback.feedback_id,
                     feedback.approval_id,
                     feedback.run_id,
-                    feedback.recommendation_id,
+                    feedback.recommendation_ids[0],
                     feedback.model_alias,
                     feedback.prompt_version,
+                    feedback.reviewer_role,
                     feedback.model_dump_json(),
                     feedback.created_at.isoformat(),
                 ),

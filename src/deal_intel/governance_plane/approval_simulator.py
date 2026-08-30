@@ -57,27 +57,61 @@ class ApprovalSimulator:
             recommendation.recommendation_id: recommendation
             for recommendation in recommendations
         }
-        approvals: list[ApprovalRequest] = []
+        grouped_requirements: dict[tuple[str, ...], list[ApprovalRequirement]] = {}
         for requirement in requirements:
-            recommendation = recommendation_by_id[requirement.recommendation_id]
-            for role in requirement.required_roles:
-                approval = ApprovalRequest(
-                    run_id=run_id,
-                    recommendation_id=recommendation.recommendation_id,
-                    required_role=role,
-                    action=recommendation.action,
-                    rationale=recommendation.rationale,
-                    confidence=recommendation.confidence,
-                    evidence_ids=recommendation.evidence_ids,
-                    reason_codes=requirement.reason_codes,
-                    policy_rules=requirement.policy_rules,
-                    explanation=requirement.explanation,
-                    model_alias=model_alias,
-                    prompt_version=prompt_version,
-                )
-                approvals.append(approval)
-                if self.run_ledger:
-                    self.run_ledger.save_approval(approval)
+            routing_key = tuple(sorted(set(requirement.required_roles)))
+            grouped_requirements.setdefault(routing_key, []).append(requirement)
+
+        approvals: list[ApprovalRequest] = []
+        confidence_rank = {"low": 0, "medium": 1, "high": 2}
+        for required_roles, group in grouped_requirements.items():
+            grouped_recommendations = [
+                recommendation_by_id[requirement.recommendation_id]
+                for requirement in group
+            ]
+            recommendation_ids = list(
+                dict.fromkeys(item.recommendation_id for item in grouped_recommendations)
+            )
+            reason_codes = list(
+                dict.fromkeys(reason for item in group for reason in item.reason_codes)
+            )
+            policy_rules = list(
+                dict.fromkeys(rule for item in group for rule in item.policy_rules)
+            )
+            role_text = ", ".join(required_roles)
+            reason_text = ", ".join(reason_codes)
+            approval = ApprovalRequest(
+                run_id=run_id,
+                grouping_key=f"roles:{'+'.join(required_roles)}",
+                recommendation_ids=recommendation_ids,
+                required_roles=list(required_roles),
+                actions=[item.action for item in grouped_recommendations],
+                rationales=[item.rationale for item in grouped_recommendations],
+                confidence=min(
+                    (item.confidence for item in grouped_recommendations),
+                    key=confidence_rank.__getitem__,
+                ),
+                evidence_ids=list(
+                    dict.fromkeys(
+                        evidence_id
+                        for item in grouped_recommendations
+                        for evidence_id in item.evidence_ids
+                    )
+                ),
+                reason_codes=reason_codes,
+                policy_rules=policy_rules,
+                explanation=(
+                    f"Human approval is required from {role_text} for "
+                    f"{len(recommendation_ids)} grouped recommendation(s) because they "
+                    f"trigger: {reason_text}. The model cannot approve or publish these "
+                    "recommendations."
+                ),
+                model_alias=model_alias,
+                prompt_version=prompt_version,
+            )
+            approvals.append(approval)
+            if self.run_ledger:
+                self.run_ledger.save_approval(approval)
         return approvals
 
     def decide(
@@ -96,8 +130,10 @@ class ApprovalSimulator:
             raise KeyError("approval_not_found")
         if approval.status != "pending":
             raise ValueError("approval_already_decided")
-        if reviewer_role != approval.required_role:
+        if reviewer_role not in approval.required_roles:
             raise PermissionError("reviewer_role_not_authorized")
+        if reviewer_role in approval.approved_roles:
+            raise ValueError("reviewer_role_already_decided")
 
         decision_record = ApprovalDecisionRecord(
             approval_id=approval.approval_id,
@@ -110,11 +146,11 @@ class ApprovalSimulator:
         feedback = HumanFeedbackRecord(
             approval_id=approval.approval_id,
             run_id=approval.run_id,
-            recommendation_id=approval.recommendation_id,
+            recommendation_ids=approval.recommendation_ids,
             model_alias=approval.model_alias,
             prompt_version=approval.prompt_version,
-            original_action=approval.action,
-            original_rationale=approval.rationale,
+            original_actions=approval.actions,
+            original_rationales=approval.rationales,
             evidence_ids=approval.evidence_ids,
             policy_reasons=approval.reason_codes,
             human_decision=decision,

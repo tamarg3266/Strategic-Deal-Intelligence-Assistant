@@ -1,7 +1,10 @@
+import shutil
 from pathlib import Path
 
 from deal_intel.contracts.schemas import EvidenceRecord
 from deal_intel.control_plane.capabilities import EvidenceCapability
+from deal_intel.evidence_plane.index_manager import EvidenceIndexManager
+from deal_intel.evidence_plane.ingestion import EvidenceIngestor
 from deal_intel.evidence_plane.ledger import EvidenceLedger
 
 
@@ -78,3 +81,26 @@ def test_scoped_search_never_returns_matching_but_unauthorized_rows(
     records = ledger.scoped_search(_capability(), "discount approval", limit=10)
 
     assert [record.evidence_id for record in records] == ["EV-ALLOWED"]
+
+
+def test_evidence_index_rebuilds_only_when_source_content_changes(
+    tmp_path: Path,
+) -> None:
+    data_root = tmp_path / "synthetic_data"
+    shutil.copytree(Path("synthetic_data"), data_root)
+    ledger = EvidenceLedger(tmp_path / "evidence.sqlite")
+    manager = EvidenceIndexManager(EvidenceIngestor(data_root), ledger)
+
+    first = manager.ensure_current()
+    second = manager.ensure_current()
+    slack_path = data_root / "slack" / "account_team_updates.tsv"
+    slack_path.write_text(
+        slack_path.read_text(encoding="utf-8") + "\n",
+        encoding="utf-8",
+    )
+    changed = manager.ensure_current()
+
+    assert first.refreshed is True
+    assert second.refreshed is False
+    assert changed.refreshed is True
+    assert first.record_count == second.record_count == changed.record_count

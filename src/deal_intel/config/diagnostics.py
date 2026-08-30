@@ -80,7 +80,7 @@ def _check_paths(config: AppConfig) -> RuntimeCheck:
         "commercial_analyst.md",
         "buyer_signal_analyst.md",
         "risk_approval_analyst.md",
-        "brief_composer.md",
+        "negotiation_strategy.md",
     }
     missing: list[str] = []
     if not config.paths.data_root.is_dir():
@@ -245,6 +245,8 @@ async def _check_structured_generation(config: AppConfig) -> RuntimeCheck:
             status="fail",
             detail=f"Structured generation failed ({cause}).",
         )
+    finally:
+        await gateway.aclose()
     return RuntimeCheck(
         name="structured_generation",
         status="pass",

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import re
 from collections.abc import Iterable
@@ -48,6 +49,25 @@ class EvidenceIngestor:
         if len(evidence_ids) != len(set(evidence_ids)):
             raise ValueError("Evidence ingestion produced duplicate evidence IDs")
         return records
+
+    def source_fingerprint(self) -> str:
+        """Hash source names and bytes so indexing can skip unchanged fixtures."""
+
+        digest = hashlib.sha256()
+        paths = sorted(
+            path
+            for path in self.data_root.rglob("*")
+            if path.is_file() and path.suffix.casefold() in {".tsv", ".md"}
+        )
+        if not paths:
+            raise FileNotFoundError(f"No evidence sources found under {self.data_root}")
+        for path in paths:
+            relative_path = path.relative_to(self.data_root).as_posix()
+            digest.update(relative_path.encode("utf-8"))
+            digest.update(b"\0")
+            digest.update(path.read_bytes())
+            digest.update(b"\0")
+        return digest.hexdigest()
 
     def _load_opportunities(self, rows: list[dict[str, str]]) -> list[EvidenceRecord]:
         records: list[EvidenceRecord] = []

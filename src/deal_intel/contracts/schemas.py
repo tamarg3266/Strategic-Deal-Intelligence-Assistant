@@ -34,6 +34,16 @@ TraceEventCategory = Literal[
     "persistence",
     "validation",
 ]
+ProgressStage = Literal[
+    "authorization",
+    "indexing",
+    "retrieval",
+    "analysis",
+    "strategy",
+    "governance",
+    "persistence",
+]
+ProgressStatus = Literal["started", "completed", "failed"]
 
 
 def utc_now() -> datetime:
@@ -121,18 +131,22 @@ class AnalystReport(BaseModel):
     conflicts: list[str] = Field(default_factory=list)
 
 
-class BriefDraft(BaseModel):
-    sections: dict[str, str]
-    cited_evidence_ids: list[str] = Field(default_factory=list)
+class StrategySynthesis(BaseModel):
+    """Compact LLM synthesis; application code owns final brief rendering."""
 
-    @model_validator(mode="after")
-    def require_all_sections(self) -> BriefDraft:
-        missing = [
-            section for section in REQUIRED_BRIEF_SECTIONS if section not in self.sections
+    executive_summary: list[CitedClaim] = Field(default_factory=list)
+    buyer_goals_and_drivers: list[CitedClaim] = Field(default_factory=list)
+    stakeholder_map: list[CitedClaim] = Field(default_factory=list)
+    negotiation_state: list[CitedClaim] = Field(default_factory=list)
+    prioritized_recommendation_ids: list[str] = Field(default_factory=list)
+
+    def claims(self) -> list[CitedClaim]:
+        return [
+            *self.executive_summary,
+            *self.buyer_goals_and_drivers,
+            *self.stakeholder_map,
+            *self.negotiation_state,
         ]
-        if missing:
-            raise ValueError(f"Missing required brief sections: {missing}")
-        return self
 
 
 class StrategicBrief(BaseModel):
@@ -167,11 +181,13 @@ class ApprovalRequirement(BaseModel):
 class ApprovalRequest(BaseModel):
     approval_id: str = Field(default_factory=lambda: str(uuid4()))
     run_id: str
-    recommendation_id: str
-    required_role: str
+    grouping_key: str = Field(min_length=1)
+    recommendation_ids: list[str] = Field(min_length=1)
+    required_roles: list[str] = Field(min_length=1)
+    approved_roles: list[str] = Field(default_factory=list)
     status: ApprovalStatus = "pending"
-    action: str
-    rationale: str
+    actions: list[str] = Field(min_length=1)
+    rationales: list[str] = Field(min_length=1)
     confidence: Confidence
     evidence_ids: list[str]
     reason_codes: list[str]
@@ -200,11 +216,11 @@ class HumanFeedbackRecord(BaseModel):
     feedback_id: str = Field(default_factory=lambda: str(uuid4()))
     approval_id: str
     run_id: str
-    recommendation_id: str
+    recommendation_ids: list[str] = Field(min_length=1)
     model_alias: str
     prompt_version: str
-    original_action: str
-    original_rationale: str
+    original_actions: list[str] = Field(min_length=1)
+    original_rationales: list[str] = Field(min_length=1)
     evidence_ids: list[str]
     policy_reasons: list[str]
     human_decision: HumanDecision
@@ -223,6 +239,14 @@ class TraceEvent(BaseModel):
     created_at: datetime = Field(default_factory=utc_now)
 
 
+class RunProgress(BaseModel):
+    run_id: str
+    stage: ProgressStage
+    status: ProgressStatus
+    message: str
+    created_at: datetime = Field(default_factory=utc_now)
+
+
 class ModelInvocation(BaseModel):
     invocation_id: str = Field(default_factory=lambda: str(uuid4()))
     run_id: str
@@ -232,6 +256,7 @@ class ModelInvocation(BaseModel):
     prompt_version: str
     input_hash: str
     output_schema: str
+    max_output_tokens: int | None = None
     latency_ms: int
     input_tokens: int | None = None
     output_tokens: int | None = None

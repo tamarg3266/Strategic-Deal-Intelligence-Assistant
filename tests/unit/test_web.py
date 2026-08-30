@@ -60,3 +60,40 @@ def test_web_health_and_denied_workflow_end_to_end(tmp_path: Path) -> None:
     assert result["status"] == "denied"
     assert result["safe_error"] == "access_denied"
     assert result["brief"] is None
+
+
+def test_web_stream_emits_safe_progress_and_terminal_result(tmp_path: Path) -> None:
+    server = create_web_server(_config(tmp_path), port=0, gateway=FakeGateway({}))
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    base_url = f"http://127.0.0.1:{server.server_port}"
+    try:
+        request = Request(
+            f"{base_url}/api/runs/stream",
+            data=json.dumps(
+                {"opportunity_id": "OPP-1003", "requester_id": "USR-5007"}
+            ).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urlopen(request, timeout=5) as response:
+            assert response.headers["Content-Type"].startswith(
+                "application/x-ndjson"
+            )
+            events = [
+                json.loads(line)
+                for line in response.read().decode("utf-8").splitlines()
+            ]
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+    progress_events = [item["progress"] for item in events if item["type"] == "progress"]
+    terminal = next(item["result"] for item in events if item["type"] == "result")
+    assert {item["stage"] for item in progress_events} == {
+        "authorization",
+        "persistence",
+    }
+    assert all("EV-" not in item["message"] for item in progress_events)
+    assert terminal["status"] == "denied"

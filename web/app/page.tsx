@@ -23,7 +23,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 
 type RuntimeCheck = { name: string; status: 'pass' | 'fail' | 'skip'; detail: string };
 type Health = { ready: boolean; environment: string; checks: RuntimeCheck[] };
@@ -39,6 +38,17 @@ type RunResult = {
   safe_error?: string | null;
   brief?: Brief | null;
 };
+type RunProgress = {
+  run_id: string;
+  stage: string;
+  status: 'started' | 'completed' | 'failed';
+  message: string;
+  created_at: string;
+};
+type StreamEvent =
+  | { type: 'progress'; progress: RunProgress }
+  | { type: 'result'; result: RunResult }
+  | { type: 'error'; error: string };
 
 const sectionOrder = [
   'Deal Snapshot',
@@ -58,11 +68,9 @@ export default function Home() {
   const [running, setRunning] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<RunResult | null>(null);
+  const [progressEvents, setProgressEvents] = useState<RunProgress[]>([]);
   const [opportunityId, setOpportunityId] = useState('OPP-1001');
   const [requesterId, setRequesterId] = useState('USR-5001');
-  const [request, setRequest] = useState(
-    'Generate an internal Strategic Deal Intelligence Brief.',
-  );
 
   async function checkHealth(includeModel = false) {
     setChecking(true);
@@ -106,18 +114,46 @@ export default function Home() {
     setRunning(true);
     setError('');
     setResult(null);
+    setProgressEvents([]);
     try {
-      const response = await fetch('/api/runs', {
+      const response = await fetch('/api/runs/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           opportunity_id: opportunityId,
           requester_id: requesterId,
-          user_input: request,
         }),
       });
-      if (!response.ok) throw new Error('Run failed');
-      setResult(await response.json());
+      if (!response.ok || !response.body) throw new Error('Run failed');
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let receivedResult = false;
+
+      function consume(line: string) {
+        if (!line.trim()) return;
+        const event = JSON.parse(line) as StreamEvent;
+        if (event.type === 'progress') {
+          setProgressEvents((current) => [...current, event.progress]);
+        } else if (event.type === 'result') {
+          receivedResult = true;
+          setResult(event.result);
+        } else {
+          throw new Error(event.error);
+        }
+      }
+
+      while (true) {
+        const { done, value } = await reader.read();
+        buffer += decoder.decode(value, { stream: !done });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+        lines.forEach(consume);
+        if (done) break;
+      }
+      consume(buffer);
+      if (!receivedResult) throw new Error('Run ended without a result');
     } catch {
       setError('The run could not be completed. Check readiness and server logs.');
     } finally {
@@ -126,6 +162,7 @@ export default function Home() {
   }
 
   const passed = health?.checks.filter((check) => check.status === 'pass').length ?? 0;
+  const latestProgress = progressEvents[progressEvents.length - 1];
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -208,13 +245,9 @@ export default function Home() {
                     <Input id="requester-id" value={requesterId} onChange={(event) => setRequesterId(event.target.value)} required pattern="USR-[0-9]+" />
                   </label>
                 </div>
-                <label htmlFor="analyst-request" className="block space-y-1.5 text-xs font-medium">
-                  Analyst request
-                  <Textarea id="analyst-request" className="min-h-28 resize-none" value={request} onChange={(event) => setRequest(event.target.value)} maxLength={2000} required />
-                </label>
                 <Button type="submit" size="lg" className="h-10 w-full bg-[#0b6655] hover:bg-[#084e42]" disabled={running}>
                   {running ? <LoaderCircle className="animate-spin" /> : <Play className="fill-current" />}
-                  {running ? 'Analysts are running…' : 'Run three analysts'}
+                  {running ? latestProgress?.message ?? 'Starting run…' : 'Generate brief'}
                 </Button>
               </form>
             </CardContent>
@@ -235,8 +268,29 @@ export default function Home() {
             <CardContent className="py-5">
               {error && <div role="alert" className="mb-5 flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950"><AlertTriangle className="mt-0.5 size-4 shrink-0" />{error}</div>}
               {running && (
-                <div className="grid min-h-[480px] place-items-center text-center">
-                  <div><LoaderCircle className="mx-auto size-8 animate-spin text-[#0b6655]" /><h2 className="mt-4 font-semibold">Analysts are working concurrently</h2><p className="mt-1 max-w-sm text-sm text-muted-foreground">Commercial, buyer signal, and risk analysis must all finish before composition.</p></div>
+                <div className="mx-auto min-h-[480px] max-w-xl py-14">
+                  <div className="flex items-center gap-3 border-b pb-5">
+                    <LoaderCircle className="size-6 animate-spin text-[#0b6655]" />
+                    <div>
+                      <h2 className="font-semibold">{latestProgress?.message ?? 'Starting scoped run'}</h2>
+                      <p className="mt-1 text-sm text-muted-foreground">Live workflow progress without evidence or prompt content.</p>
+                    </div>
+                  </div>
+                  <div className="mt-5 space-y-2" aria-live="polite">
+                    {progressEvents.map((item, index) => (
+                      <div key={`${item.stage}-${item.status}-${index}`} className="flex items-center gap-3 py-2 text-sm">
+                        {item.status === 'completed' ? (
+                          <CheckCircle2 className="size-4 shrink-0 text-[#0b6655]" />
+                        ) : item.status === 'failed' ? (
+                          <AlertTriangle className="size-4 shrink-0 text-amber-600" />
+                        ) : (
+                          <LoaderCircle className="size-4 shrink-0 animate-spin text-muted-foreground" />
+                        )}
+                        <span className="w-28 shrink-0 font-medium capitalize">{item.stage}</span>
+                        <span className="text-muted-foreground">{item.message}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
               {!running && !result && (

@@ -38,6 +38,7 @@ class LiteLLMConfig(BaseModel):
     )
     temperature: float = Field(default=0, ge=0, le=2)
     max_output_tokens: int = Field(default=4_000, ge=256, le=65_536)
+    synthesis_max_output_tokens: int = Field(default=1_800, ge=256, le=8_192)
 
     @field_validator("base_url")
     @classmethod
@@ -118,6 +119,10 @@ ENV_OVERRIDES: dict[str, tuple[tuple[str, ...], EnvCaster]] = {
     "LITELLM_TEMPERATURE": (("litellm", "temperature"), float),
     "LITELLM_MAX_OUTPUT_TOKENS": (
         ("litellm", "max_output_tokens"),
+        int,
+    ),
+    "LITELLM_SYNTHESIS_MAX_OUTPUT_TOKENS": (
+        ("litellm", "synthesis_max_output_tokens"),
         int,
     ),
 }

@@ -1,0 +1,700 @@
+{
+  "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+  "request": {
+    "opportunity_id": "OPP-1001",
+    "requester_id": "USR-5001",
+    "user_input": "Generate an internal Strategic Deal Intelligence Brief."
+  },
+  "status": "approval_required",
+  "brief": {
+    "status": "approval_required",
+    "sections": {
+      "Deal Snapshot": "- Salesforce records the renewal opportunity at stage 6.0 Order Review with a close date of 2026-05-17, forecast category Commit, probability 78, owner Maya Levin, ACV 4217500, TCV 12652500, and a 36-month renewal term. [EV-SF-OPPORTUNITY-OPP-1001] (confidence: high)\n- The recorded Salesforce next step is to send the revised order form and migration success plan by 2026-04-28. [EV-SF-OPPORTUNITY-OPP-1001] (confidence: high)\n- Customer stakeholders remain conditionally supportive of the renewal, with final documentation dependencies covering the owner matrix, success metrics, payment schedule, and accurate data-retention language. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-SUMMARY-CALL-008, EV-GONG-SUMMARY-CALL-009, EV-SLACK-SLACK-1001-01] (confidence: high)\n- The commercial package should position the transaction as a renewal with operational assurance rather than expansion; procurement wants a clean order form, written payment options, and an explanation of the uplift. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-004, EV-SF-CONTACT-OPP-1001-CON-3003] (confidence: high)\n- Pricing records show current ACV 3900000, proposed ACV 4217500, and renewal uplift 8. One pricing record shows a requested discount of 4, while another shows 0 and states that no new concession was requested in final document review. [EV-PRICING-PN-4001, EV-PRICING-PN-4002] (confidence: high)\n- Operational readiness remains commercially relevant: the buyer requested named escalation ownership, a support bridge schedule, weekly reporting, and success metrics including exception reduction and closure-time measures. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-SUMMARY-CALL-006, EV-SLACK-SLACK-1001-02] (confidence: high)",
+      "Executive Summary": "- The renewal is recorded at Order Review and Commit, but stakeholder support remains conditional on complete commercial, operational, finance, and legal documentation. [EV-SF-OPPORTUNITY-OPP-1001, EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-SUMMARY-CALL-008] (confidence: high)\n- The package should position the transaction as a renewal supported by operational assurance, not as an expansion. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-004] (confidence: high)\n- The immediate priority is completion of the revised order form and migration success plan by 2026-04-28, ahead of the recorded 2026-05-17 close date. [EV-SF-OPPORTUNITY-OPP-1001, EV-GONG-SUMMARY-CALL-008, EV-SLACK-SLACK-1001-01] (confidence: high)",
+      "Buyer Goals and Business Drivers": "- The buyer\u2019s primary goal is to reduce regional and unmanaged-access exceptions, with success defined through risk and governance improvement rather than deployment volume alone. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-SUMMARY-CALL-003, EV-SF-ACCOUNT-OPP-1001-ACC-2001] (confidence: high)\n- Technical stakeholders want measurable governance reporting covering baseline and target metrics, exception reduction and closure time, migration progress, rollback events, support response, and policy drift. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-SUMMARY-CALL-003, EV-GONG-SUMMARY-CALL-006] (confidence: high)\n- Procurement wants a consolidated order form, written payment options, and a clear uplift explanation; cheaper alternatives create pressure, but a safer and more integrated renewal may be defensible with supporting evidence. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-003, EV-SF-CONTACT-OPP-1001-CON-3003] (confidence: high)",
+      "Stakeholder Map": "- Elena Voss is Salesforce-labeled as the economic buyer and has expressed conditional support for a May signature if the final packet is clean and the exception plan is credible; this is not unconditional approval. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-008, EV-SF-CONTACT-OPP-1001-CON-3001] (confidence: high)\n- Marco Devlin is Salesforce-labeled as the technical decision maker and requires a named owner matrix and credible escalation path for migration blockers and regional workarounds. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-008, EV-SF-CONTACT-OPP-1001-CON-3002] (confidence: high)\n- Iris Calder is Salesforce-labeled as the commercial approver and requires written payment terms, a consolidated order form, and an uplift explanation; finance review of the payment schedule is still pending. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008, EV-SF-CONTACT-OPP-1001-CON-3003] (confidence: high)\n- Amara Quinn is Salesforce-labeled as the legal reviewer, with narrower liability wording and the data-retention citation still open; legal is near complete rather than closed. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-007, EV-GONG-SUMMARY-CALL-009, EV-SF-CONTACT-OPP-1001-CON-3005] (confidence: high)",
+      "Negotiation State": "- Pricing records support the same renewal uplift but conflict on whether a discount was requested; the later record states that no new concession was requested during final document review. [EV-PRICING-PN-4001, EV-PRICING-PN-4002] (confidence: high)\n- Finance approval of the proposed payment schedule remains unresolved, and milestone language could create ambiguity if it implies outcome-based acceptance or guaranteed migration results. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008] (confidence: high)\n- Liability wording and an accurate, versioned data-retention policy citation remain open legal dependencies; customer-specific language requires legal review before external sharing. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-007, EV-GONG-SUMMARY-CALL-009, EV-POLICY-OPP-1001-DEAL-DESK] (confidence: high)\n- Confirmed owner groups for some regions, baseline exception counts, final finance confirmation, and the final legal citation remain missing from the packet. [EV-GONG-TRANSCRIPT-CALL-008] (confidence: high)",
+      "Recommended Next Actions": "- Assemble and quality-check one complete renewal packet containing the executive summary, baseline-and-target success metrics, owner matrix, payment schedule, support bridge schedule, legal citation, and legacy-site review dates before the stated package deadline. Owner: Account Executive / Deal Desk. Rationale: The buyer\u2019s stated dependencies are documentation-heavy, and the final packet is the condition for renewal support; incomplete or fragmented materials could delay signature. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-SF-OPPORTUNITY-OPP-1001] (confidence: high)\n- Have legal finalize the narrower liability response and validate the exact data-retention policy name, version date, excerpt, and citation before including them in the packet. Owner: Vendor Legal. Rationale: Legal has not fully closed its review, and an inaccurate citation or materially changed language could reopen review. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-007, EV-GONG-SUMMARY-CALL-009] (confidence: high)\n- Obtain and record finance review of the payment schedule, clearly separating proposed terms from approved terms and confirming whether the schedule changes total contract value. Owner: Deal Desk / Finance Partner. Rationale: Procurement requires written payment terms, while finance approval and the commercial effect of milestone billing remain unresolved. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008] (confidence: high)\n- Reconcile the two pricing records and document the final discount position, payment-schedule economics, and internal commercial status before the package is sent. Owner: Deal Desk Analyst. Rationale: The pricing records differ on requested discount, while procurement requires clarity on whether payment terms change total cost and whether offered terms have been internally cleared. [EV-PRICING-PN-4001, EV-PRICING-PN-4002, EV-GONG-TRANSCRIPT-CALL-004, EV-POLICY-OPP-1001-DEAL-DESK] (confidence: high)\n- Complete a security-governance review of the owner matrix and migration plan, covering accountable owner groups, exception baselines, legacy-site review dates, and regional escalation coverage. Owner: Security Customer Success Lead. Rationale: Unclear ownership and temporary bypasses could perpetuate unmanaged access, while stakeholders require measurable exception reduction and credible escalation paths. [EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-TRANSCRIPT-CALL-008, EV-SLACK-SLACK-1001-02] (confidence: high)\n- Assemble one commercial package containing the revised order form, written payment options, uplift explanation, migration success plan, and signature checklist. Owner: Account Executive. Rationale: Procurement requested coordinated documentation, and Salesforce sets 2026-04-28 as the next-step date; stakeholders remain aligned if the package arrives by that deadline. [EV-SF-OPPORTUNITY-OPP-1001, EV-GONG-TRANSCRIPT-CALL-004, EV-SLACK-SLACK-1001-01] (confidence: high)\n- Route the data-retention citation and remaining legal language for legal validation, then attach the validated policy excerpt before external distribution. Owner: Legal Operations. Rationale: Legal requires an accurate retention reference and has requested written language; the policy requires legal approval before data-retention or customer-specific legal language is shared externally. [EV-GONG-SUMMARY-CALL-007, EV-GONG-SUMMARY-CALL-009, EV-POLICY-OPP-1001-DEAL-DESK] (confidence: high)\n- Finalize the owner matrix, regional escalation assignments, support bridge schedule, and success-metric baseline and targets for the renewal packet. Owner: Customer Success Lead. Rationale: Infrastructure and operations stakeholders identified named escalation ownership, support coverage, and measurable exception outcomes as conditions for operational confidence and signature readiness. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-SUMMARY-CALL-006, EV-SLACK-SLACK-1001-02] (confidence: high)\n- Validate the owner matrix with the infrastructure and regional teams, including one accountable escalation group per region and explicit review dates for legacy-site exceptions. Owner: Customer Success / Solutions Architecture. Rationale: Operational support is conditional on real accountability, and the regional escalation requirement is not fully represented in the formal playbook. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-SLACK-SLACK-1001-02] (confidence: high)\n- Prepare the success-metrics section with documented baseline exception counts, targets, policy-drift visibility, and separate governance reporting from payment-readiness milestones. Owner: Customer Success / Value Engineering. Rationale: The CISO requires evidence of shrinking exceptions, while procurement and infrastructure explicitly distinguish governance metrics from payment conditions. [EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-SUMMARY-CALL-003] (confidence: high)\n- Validate the revised liability language and data-retention citation against the applicable policy name and version before release of the external package. Owner: Legal Operations. Rationale: Both items remain legally open, and an inaccurate citation or overly broad obligation could reopen contract review. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-009, EV-POLICY-OPP-1001-DEAL-DESK] (confidence: high)\n- Reconcile the pricing notes and establish one controlled commercial record before preparing any pricing or concession materials. Owner: Deal Desk Analyst. Rationale: The records disagree on whether a discount is requested, creating a risk of presenting inconsistent commercial terms. Both records support the proposed renewal uplift. [EV-PRICING-PN-4001, EV-PRICING-PN-4002] (confidence: high)\n- Validate the milestone payment schedule against finance status, total-cost treatment, and the service agreement before incorporating it into the order package. Owner: Finance and Commercial Operations. Rationale: Finance has not confirmed the schedule, and milestone language must avoid creating unintended outcome-acceptance or migration-guarantee obligations. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008] (confidence: high)\n- Run a pre-release substantiation review of the final packet to prevent unsupported claims that legal is complete, the payment schedule is confirmed, migration outcomes are guaranteed, or the transaction is an expansion. Owner: Deal Governance Lead. Rationale: Customer stakeholders explicitly identified these characterizations as inaccurate or likely to trigger additional procurement and legal questions. [EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008] (confidence: high)",
+      "Missing Information": "- Finance confirmation of the payment schedule and whether the proposed schedule changes total contract value.\n- Final approved data-retention policy citation and excerpt for inclusion in the signature package.\n- Final status of liability-language redlines and confirmation that the wording aligns with the service agreement.\n- Confirmed accountable owner groups for the regions still missing named escalation ownership.\n- Baseline exception counts and agreed success-metric targets.\n- Reconciled final discount position and confirmation of whether any concession is included in the final commercial package.\n- Finance\u2019s disposition of the proposed payment schedule is not documented.\n- The final legal liability wording and accurate policy citation are not documented as complete.\n- Confirmed owner groups and escalation leads for the outstanding regions are not documented.\n- Baseline exception counts and agreed metric targets are not documented.\n- The final first-wave site list and confirmation of regional approvers are not documented.\n- It is not documented whether the payment schedule changes total contract value.",
+      "Source Evidence": "- [EV-SF-OPPORTUNITY-OPP-1001] source=synthetic_data/salesforce/opportunities.tsv, opportunity_id=OPP-1001\n- [EV-GONG-TRANSCRIPT-CALL-008] source=synthetic_data/gong/transcripts/OPP-1001_CALL-008.md, call_id=CALL-008\n- [EV-GONG-SUMMARY-CALL-008] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-008\n- [EV-GONG-SUMMARY-CALL-009] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-009\n- [EV-SLACK-SLACK-1001-01] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1001-01\n- [EV-GONG-TRANSCRIPT-CALL-001] source=synthetic_data/gong/transcripts/OPP-1001_CALL-001.md, call_id=CALL-001\n- [EV-GONG-TRANSCRIPT-CALL-004] source=synthetic_data/gong/transcripts/OPP-1001_CALL-004.md, call_id=CALL-004\n- [EV-SF-CONTACT-OPP-1001-CON-3003] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3003\n- [EV-PRICING-PN-4001] source=synthetic_data/pricing/pricing_notes.tsv, pricing_note_id=PN-4001\n- [EV-PRICING-PN-4002] source=synthetic_data/pricing/pricing_notes.tsv, pricing_note_id=PN-4002\n- [EV-GONG-SUMMARY-CALL-006] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-006\n- [EV-SLACK-SLACK-1001-02] source=synthetic_data/slack/account_team_updates.tsv, update_id=SLACK-1001-02\n- [EV-GONG-SUMMARY-CALL-003] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-003\n- [EV-SF-ACCOUNT-OPP-1001-ACC-2001] source=synthetic_data/salesforce/accounts.tsv, account_id=ACC-2001\n- [EV-SF-CONTACT-OPP-1001-CON-3001] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3001\n- [EV-SF-CONTACT-OPP-1001-CON-3002] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3002\n- [EV-GONG-SUMMARY-CALL-007] source=synthetic_data/gong/gong_call_summaries.tsv, call_id=CALL-007\n- [EV-SF-CONTACT-OPP-1001-CON-3005] source=synthetic_data/salesforce/contacts.tsv, contact_id=CON-3005\n- [EV-POLICY-OPP-1001-DEAL-DESK] source=synthetic_data/policies/deal_desk_policy.md, policy_id=DEAL-DESK-POLICY-V1",
+      "Confidence and Review Warnings": "- commercial_analyst reported 2 evidence conflict(s); human review is required.\n- buyer_signal_analyst reported 3 evidence conflict(s); human review is required.\n\nHuman approval gates:\n- Approval 8d58c3fc-212e-417a-beac-02d0f863c116 requires human_reviewer, sales_leader for recommendations 6d4f04ab-d4c7-47b2-84c2-ed1bd2ceec2d, d00b4ab8-63c6-4b89-a5ec-054ff07fc6e2, 42b2e67c-cc21-4e75-9320-5786a82bb965, 4f8b40f5-8081-43e9-bb68-5a2322c12e20: Human approval is required from human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-SF-OPPORTUNITY-OPP-1001, EV-SLACK-SLACK-1001-02, EV-GONG-SUMMARY-CALL-003\n- Approval 2560bde1-3f49-4fc6-8f64-3838e118f769 requires human_reviewer, legal for recommendations 14cb454f-9d4a-42be-9bf2-b65e13f1cd44, b05873a7-97fe-4ddd-a9bc-d236703a58da: Human approval is required from human_reviewer, legal for 2 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-007, EV-GONG-SUMMARY-CALL-009, EV-POLICY-OPP-1001-DEAL-DESK\n- Approval f39fa185-1f1e-426f-885a-67fa85376387 requires deal_desk, human_reviewer, sales_leader for recommendations 7be52543-6233-4d8d-a494-075ac3665454, e21a9ed8-36db-4da3-9125-2ca7da507759: Human approval is required from deal_desk, human_reviewer, sales_leader for 2 grouped recommendation(s) because they trigger: pricing_recommendation, customer_facing_language, conflicting_evidence, missing_source_data, commercial_concession. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008, EV-PRICING-PN-4001, EV-PRICING-PN-4002\n- Approval 2b1948f6-19ac-4afe-aead-c1bcf8ce4d19 requires deal_desk, human_reviewer for recommendations c6b80032-70cc-49ce-873a-884015131e26: Human approval is required from deal_desk, human_reviewer for 1 grouped recommendation(s) because they trigger: pricing_recommendation, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-PRICING-PN-4001, EV-PRICING-PN-4002, EV-GONG-TRANSCRIPT-CALL-004, EV-POLICY-OPP-1001-DEAL-DESK\n- Approval a5247969-3158-4ec4-a046-44a9ecac3fbf requires human_reviewer for recommendations ff9c61c7-8845-41d6-a4a1-b171a42275b3, d1af18dd-7178-42b2-939b-08febac87273: Human approval is required from human_reviewer for 2 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-SF-OPPORTUNITY-OPP-1001, EV-GONG-TRANSCRIPT-CALL-004, EV-SLACK-SLACK-1001-01, EV-GONG-TRANSCRIPT-CALL-008, EV-GONG-TRANSCRIPT-CALL-001, EV-GONG-SUMMARY-CALL-006, EV-SLACK-SLACK-1001-02\n- Approval 1a7297ec-aebe-437d-bbae-e847f00db8c2 requires human_reviewer, legal, sales_leader for recommendations 9a2ce2c4-1479-4f91-836e-c5a3a193aa84: Human approval is required from human_reviewer, legal, sales_leader for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-SUMMARY-CALL-009, EV-POLICY-OPP-1001-DEAL-DESK\n- Approval 40e30eac-d96b-4de6-a7d3-79091e4a1c71 requires deal_desk, human_reviewer, legal, sales_leader for recommendations 9d6debf8-cea3-442d-abf1-8a3deb4f09d9, 5fee0d50-09d2-49fb-94d4-1a055a8d2450: Human approval is required from deal_desk, human_reviewer, legal, sales_leader for 2 grouped recommendation(s) because they trigger: pricing_recommendation, legal_or_liability_change, commercial_concession, customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations. Evidence: EV-GONG-TRANSCRIPT-CALL-004, EV-GONG-TRANSCRIPT-CALL-008"
+    },
+    "cited_evidence_ids": [
+      "EV-SF-OPPORTUNITY-OPP-1001",
+      "EV-GONG-TRANSCRIPT-CALL-008",
+      "EV-GONG-SUMMARY-CALL-008",
+      "EV-GONG-SUMMARY-CALL-009",
+      "EV-SLACK-SLACK-1001-01",
+      "EV-GONG-TRANSCRIPT-CALL-001",
+      "EV-GONG-TRANSCRIPT-CALL-004",
+      "EV-SF-CONTACT-OPP-1001-CON-3003",
+      "EV-PRICING-PN-4001",
+      "EV-PRICING-PN-4002",
+      "EV-GONG-SUMMARY-CALL-006",
+      "EV-SLACK-SLACK-1001-02",
+      "EV-GONG-SUMMARY-CALL-003",
+      "EV-SF-ACCOUNT-OPP-1001-ACC-2001",
+      "EV-SF-CONTACT-OPP-1001-CON-3001",
+      "EV-SF-CONTACT-OPP-1001-CON-3002",
+      "EV-GONG-SUMMARY-CALL-007",
+      "EV-SF-CONTACT-OPP-1001-CON-3005",
+      "EV-POLICY-OPP-1001-DEAL-DESK"
+    ],
+    "recommendations": [
+      {
+        "recommendation_id": "6d4f04ab-d4c7-47b2-84c2-ed1bd2ceec2d",
+        "action": "Assemble and quality-check one complete renewal packet containing the executive summary, baseline-and-target success metrics, owner matrix, payment schedule, support bridge schedule, legal citation, and legacy-site review dates before the stated package deadline.",
+        "rationale": "The buyer\u2019s stated dependencies are documentation-heavy, and the final packet is the condition for renewal support; incomplete or fragmented materials could delay signature.",
+        "owner_role": "Account Executive / Deal Desk",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-008",
+          "EV-GONG-TRANSCRIPT-CALL-001",
+          "EV-SF-OPPORTUNITY-OPP-1001"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "14cb454f-9d4a-42be-9bf2-b65e13f1cd44",
+        "action": "Have legal finalize the narrower liability response and validate the exact data-retention policy name, version date, excerpt, and citation before including them in the packet.",
+        "rationale": "Legal has not fully closed its review, and an inaccurate citation or materially changed language could reopen review.",
+        "owner_role": "Vendor Legal",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-GONG-SUMMARY-CALL-007",
+          "EV-GONG-SUMMARY-CALL-009"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "legal",
+          "liability",
+          "data_retention"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "7be52543-6233-4d8d-a494-075ac3665454",
+        "action": "Obtain and record finance review of the payment schedule, clearly separating proposed terms from approved terms and confirming whether the schedule changes total contract value.",
+        "rationale": "Procurement requires written payment terms, while finance approval and the commercial effect of milestone billing remain unresolved.",
+        "owner_role": "Deal Desk / Finance Partner",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-GONG-TRANSCRIPT-CALL-008"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "c6b80032-70cc-49ce-873a-884015131e26",
+        "action": "Reconcile the two pricing records and document the final discount position, payment-schedule economics, and internal commercial status before the package is sent.",
+        "rationale": "The pricing records differ on requested discount, while procurement requires clarity on whether payment terms change total cost and whether offered terms have been internally cleared.",
+        "owner_role": "Deal Desk Analyst",
+        "evidence_ids": [
+          "EV-PRICING-PN-4001",
+          "EV-PRICING-PN-4002",
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-POLICY-OPP-1001-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "d00b4ab8-63c6-4b89-a5ec-054ff07fc6e2",
+        "action": "Complete a security-governance review of the owner matrix and migration plan, covering accountable owner groups, exception baselines, legacy-site review dates, and regional escalation coverage.",
+        "rationale": "Unclear ownership and temporary bypasses could perpetuate unmanaged access, while stakeholders require measurable exception reduction and credible escalation paths.",
+        "owner_role": "Security Customer Success Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-001",
+          "EV-GONG-TRANSCRIPT-CALL-008",
+          "EV-SLACK-SLACK-1001-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "security",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "ff9c61c7-8845-41d6-a4a1-b171a42275b3",
+        "action": "Assemble one commercial package containing the revised order form, written payment options, uplift explanation, migration success plan, and signature checklist.",
+        "rationale": "Procurement requested coordinated documentation, and Salesforce sets 2026-04-28 as the next-step date; stakeholders remain aligned if the package arrives by that deadline.",
+        "owner_role": "Account Executive",
+        "evidence_ids": [
+          "EV-SF-OPPORTUNITY-OPP-1001",
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-SLACK-SLACK-1001-01"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "b05873a7-97fe-4ddd-a9bc-d236703a58da",
+        "action": "Route the data-retention citation and remaining legal language for legal validation, then attach the validated policy excerpt before external distribution.",
+        "rationale": "Legal requires an accurate retention reference and has requested written language; the policy requires legal approval before data-retention or customer-specific legal language is shared externally.",
+        "owner_role": "Legal Operations",
+        "evidence_ids": [
+          "EV-GONG-SUMMARY-CALL-007",
+          "EV-GONG-SUMMARY-CALL-009",
+          "EV-POLICY-OPP-1001-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "legal"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "d1af18dd-7178-42b2-939b-08febac87273",
+        "action": "Finalize the owner matrix, regional escalation assignments, support bridge schedule, and success-metric baseline and targets for the renewal packet.",
+        "rationale": "Infrastructure and operations stakeholders identified named escalation ownership, support coverage, and measurable exception outcomes as conditions for operational confidence and signature readiness.",
+        "owner_role": "Customer Success Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-008",
+          "EV-GONG-TRANSCRIPT-CALL-001",
+          "EV-GONG-SUMMARY-CALL-006",
+          "EV-SLACK-SLACK-1001-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "42b2e67c-cc21-4e75-9320-5786a82bb965",
+        "action": "Validate the owner matrix with the infrastructure and regional teams, including one accountable escalation group per region and explicit review dates for legacy-site exceptions.",
+        "rationale": "Operational support is conditional on real accountability, and the regional escalation requirement is not fully represented in the formal playbook.",
+        "owner_role": "Customer Success / Solutions Architecture",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-008",
+          "EV-GONG-TRANSCRIPT-CALL-001",
+          "EV-SLACK-SLACK-1001-02"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "4f8b40f5-8081-43e9-bb68-5a2322c12e20",
+        "action": "Prepare the success-metrics section with documented baseline exception counts, targets, policy-drift visibility, and separate governance reporting from payment-readiness milestones.",
+        "rationale": "The CISO requires evidence of shrinking exceptions, while procurement and infrastructure explicitly distinguish governance metrics from payment conditions.",
+        "owner_role": "Customer Success / Value Engineering",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-008",
+          "EV-GONG-TRANSCRIPT-CALL-001",
+          "EV-GONG-SUMMARY-CALL-003"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "9a2ce2c4-1479-4f91-836e-c5a3a193aa84",
+        "action": "Validate the revised liability language and data-retention citation against the applicable policy name and version before release of the external package.",
+        "rationale": "Both items remain legally open, and an inaccurate citation or overly broad obligation could reopen contract review.",
+        "owner_role": "Legal Operations",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-GONG-SUMMARY-CALL-009",
+          "EV-POLICY-OPP-1001-DEAL-DESK"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "legal",
+          "liability",
+          "security",
+          "data_retention",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "e21a9ed8-36db-4da3-9125-2ca7da507759",
+        "action": "Reconcile the pricing notes and establish one controlled commercial record before preparing any pricing or concession materials.",
+        "rationale": "The records disagree on whether a discount is requested, creating a risk of presenting inconsistent commercial terms. Both records support the proposed renewal uplift.",
+        "owner_role": "Deal Desk Analyst",
+        "evidence_ids": [
+          "EV-PRICING-PN-4001",
+          "EV-PRICING-PN-4002"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "discount",
+          "concession",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": 8.0,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "9d6debf8-cea3-442d-abf1-8a3deb4f09d9",
+        "action": "Validate the milestone payment schedule against finance status, total-cost treatment, and the service agreement before incorporating it into the order package.",
+        "rationale": "Finance has not confirmed the schedule, and milestone language must avoid creating unintended outcome-acceptance or migration-guarantee obligations.",
+        "owner_role": "Finance and Commercial Operations",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-GONG-TRANSCRIPT-CALL-008"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "pricing",
+          "concession",
+          "legal",
+          "liability",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      },
+      {
+        "recommendation_id": "5fee0d50-09d2-49fb-94d4-1a055a8d2450",
+        "action": "Run a pre-release substantiation review of the final packet to prevent unsupported claims that legal is complete, the payment schedule is confirmed, migration outcomes are guaranteed, or the transaction is an expansion.",
+        "rationale": "Customer stakeholders explicitly identified these characterizations as inaccurate or likely to trigger additional procurement and legal questions.",
+        "owner_role": "Deal Governance Lead",
+        "evidence_ids": [
+          "EV-GONG-TRANSCRIPT-CALL-004",
+          "EV-GONG-TRANSCRIPT-CALL-008"
+        ],
+        "confidence": "high",
+        "impact_types": [
+          "internal_action",
+          "legal",
+          "liability",
+          "pricing",
+          "concession",
+          "customer_facing"
+        ],
+        "proposed_discount_percent": null,
+        "proposed_renewal_uplift_percent": null,
+        "customer_facing": false
+      }
+    ],
+    "pending_approval_ids": [
+      "8d58c3fc-212e-417a-beac-02d0f863c116",
+      "2560bde1-3f49-4fc6-8f64-3838e118f769",
+      "f39fa185-1f1e-426f-885a-67fa85376387",
+      "2b1948f6-19ac-4afe-aead-c1bcf8ce4d19",
+      "a5247969-3158-4ec4-a046-44a9ecac3fbf",
+      "1a7297ec-aebe-437d-bbae-e847f00db8c2",
+      "40e30eac-d96b-4de6-a7d3-79091e4a1c71"
+    ]
+  },
+  "approvals": [
+    {
+      "approval_id": "8d58c3fc-212e-417a-beac-02d0f863c116",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:human_reviewer+sales_leader",
+      "recommendation_ids": [
+        "6d4f04ab-d4c7-47b2-84c2-ed1bd2ceec2d",
+        "d00b4ab8-63c6-4b89-a5ec-054ff07fc6e2",
+        "42b2e67c-cc21-4e75-9320-5786a82bb965",
+        "4f8b40f5-8081-43e9-bb68-5a2322c12e20"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Assemble and quality-check one complete renewal packet containing the executive summary, baseline-and-target success metrics, owner matrix, payment schedule, support bridge schedule, legal citation, and legacy-site review dates before the stated package deadline.",
+        "Complete a security-governance review of the owner matrix and migration plan, covering accountable owner groups, exception baselines, legacy-site review dates, and regional escalation coverage.",
+        "Validate the owner matrix with the infrastructure and regional teams, including one accountable escalation group per region and explicit review dates for legacy-site exceptions.",
+        "Prepare the success-metrics section with documented baseline exception counts, targets, policy-drift visibility, and separate governance reporting from payment-readiness milestones."
+      ],
+      "rationales": [
+        "The buyer\u2019s stated dependencies are documentation-heavy, and the final packet is the condition for renewal support; incomplete or fragmented materials could delay signature.",
+        "Unclear ownership and temporary bypasses could perpetuate unmanaged access, while stakeholders require measurable exception reduction and credible escalation paths.",
+        "Operational support is conditional on real accountability, and the regional escalation requirement is not fully represented in the formal playbook.",
+        "The CISO requires evidence of shrinking exceptions, while procurement and infrastructure explicitly distinguish governance metrics from payment conditions."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-008",
+        "EV-GONG-TRANSCRIPT-CALL-001",
+        "EV-SF-OPPORTUNITY-OPP-1001",
+        "EV-SLACK-SLACK-1001-02",
+        "EV-GONG-SUMMARY-CALL-003"
+      ],
+      "reason_codes": [
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, sales_leader for 4 grouped recommendation(s) because they trigger: customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.095285Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "2560bde1-3f49-4fc6-8f64-3838e118f769",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:human_reviewer+legal",
+      "recommendation_ids": [
+        "14cb454f-9d4a-42be-9bf2-b65e13f1cd44",
+        "b05873a7-97fe-4ddd-a9bc-d236703a58da"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "legal"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Have legal finalize the narrower liability response and validate the exact data-retention policy name, version date, excerpt, and citation before including them in the packet.",
+        "Route the data-retention citation and remaining legal language for legal validation, then attach the validated policy excerpt before external distribution."
+      ],
+      "rationales": [
+        "Legal has not fully closed its review, and an inaccurate citation or materially changed language could reopen review.",
+        "Legal requires an accurate retention reference and has requested written language; the policy requires legal approval before data-retention or customer-specific legal language is shared externally."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-GONG-SUMMARY-CALL-007",
+        "EV-GONG-SUMMARY-CALL-009",
+        "EV-POLICY-OPP-1001-DEAL-DESK"
+      ],
+      "reason_codes": [
+        "legal_or_liability_change",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, legal for 2 grouped recommendation(s) because they trigger: legal_or_liability_change, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.105468Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "f39fa185-1f1e-426f-885a-67fa85376387",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:deal_desk+human_reviewer+sales_leader",
+      "recommendation_ids": [
+        "7be52543-6233-4d8d-a494-075ac3665454",
+        "e21a9ed8-36db-4da3-9125-2ca7da507759"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Obtain and record finance review of the payment schedule, clearly separating proposed terms from approved terms and confirming whether the schedule changes total contract value.",
+        "Reconcile the pricing notes and establish one controlled commercial record before preparing any pricing or concession materials."
+      ],
+      "rationales": [
+        "Procurement requires written payment terms, while finance approval and the commercial effect of milestone billing remain unresolved.",
+        "The records disagree on whether a discount is requested, creating a risk of presenting inconsistent commercial terms. Both records support the proposed renewal uplift."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-GONG-TRANSCRIPT-CALL-008",
+        "EV-PRICING-PN-4001",
+        "EV-PRICING-PN-4002"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data",
+        "commercial_concession"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, sales_leader for 2 grouped recommendation(s) because they trigger: pricing_recommendation, customer_facing_language, conflicting_evidence, missing_source_data, commercial_concession. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.116278Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "2b1948f6-19ac-4afe-aead-c1bcf8ce4d19",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:deal_desk+human_reviewer",
+      "recommendation_ids": [
+        "c6b80032-70cc-49ce-873a-884015131e26"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Reconcile the two pricing records and document the final discount position, payment-schedule economics, and internal commercial status before the package is sent."
+      ],
+      "rationales": [
+        "The pricing records differ on requested discount, while procurement requires clarity on whether payment terms change total cost and whether offered terms have been internally cleared."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-PRICING-PN-4001",
+        "EV-PRICING-PN-4002",
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-POLICY-OPP-1001-DEAL-DESK"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer for 1 grouped recommendation(s) because they trigger: pricing_recommendation, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.126060Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "a5247969-3158-4ec4-a046-44a9ecac3fbf",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:human_reviewer",
+      "recommendation_ids": [
+        "ff9c61c7-8845-41d6-a4a1-b171a42275b3",
+        "d1af18dd-7178-42b2-939b-08febac87273"
+      ],
+      "required_roles": [
+        "human_reviewer"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Assemble one commercial package containing the revised order form, written payment options, uplift explanation, migration success plan, and signature checklist.",
+        "Finalize the owner matrix, regional escalation assignments, support bridge schedule, and success-metric baseline and targets for the renewal packet."
+      ],
+      "rationales": [
+        "Procurement requested coordinated documentation, and Salesforce sets 2026-04-28 as the next-step date; stakeholders remain aligned if the package arrives by that deadline.",
+        "Infrastructure and operations stakeholders identified named escalation ownership, support coverage, and measurable exception outcomes as conditions for operational confidence and signature readiness."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-SF-OPPORTUNITY-OPP-1001",
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-SLACK-SLACK-1001-01",
+        "EV-GONG-TRANSCRIPT-CALL-008",
+        "EV-GONG-TRANSCRIPT-CALL-001",
+        "EV-GONG-SUMMARY-CALL-006",
+        "EV-SLACK-SLACK-1001-02"
+      ],
+      "reason_codes": [
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer for 2 grouped recommendation(s) because they trigger: conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.134522Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "1a7297ec-aebe-437d-bbae-e847f00db8c2",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:human_reviewer+legal+sales_leader",
+      "recommendation_ids": [
+        "9a2ce2c4-1479-4f91-836e-c5a3a193aa84"
+      ],
+      "required_roles": [
+        "human_reviewer",
+        "legal",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Validate the revised liability language and data-retention citation against the applicable policy name and version before release of the external package."
+      ],
+      "rationales": [
+        "Both items remain legally open, and an inaccurate citation or overly broad obligation could reopen contract review."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-GONG-SUMMARY-CALL-009",
+        "EV-POLICY-OPP-1001-DEAL-DESK"
+      ],
+      "reason_codes": [
+        "legal_or_liability_change",
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from human_reviewer, legal, sales_leader for 1 grouped recommendation(s) because they trigger: legal_or_liability_change, customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.144609Z",
+      "decided_at": null
+    },
+    {
+      "approval_id": "40e30eac-d96b-4de6-a7d3-79091e4a1c71",
+      "run_id": "429cd424-17ec-4c04-9947-62e6d6c2e317",
+      "grouping_key": "roles:deal_desk+human_reviewer+legal+sales_leader",
+      "recommendation_ids": [
+        "9d6debf8-cea3-442d-abf1-8a3deb4f09d9",
+        "5fee0d50-09d2-49fb-94d4-1a055a8d2450"
+      ],
+      "required_roles": [
+        "deal_desk",
+        "human_reviewer",
+        "legal",
+        "sales_leader"
+      ],
+      "approved_roles": [],
+      "status": "pending",
+      "actions": [
+        "Validate the milestone payment schedule against finance status, total-cost treatment, and the service agreement before incorporating it into the order package.",
+        "Run a pre-release substantiation review of the final packet to prevent unsupported claims that legal is complete, the payment schedule is confirmed, migration outcomes are guaranteed, or the transaction is an expansion."
+      ],
+      "rationales": [
+        "Finance has not confirmed the schedule, and milestone language must avoid creating unintended outcome-acceptance or migration-guarantee obligations.",
+        "Customer stakeholders explicitly identified these characterizations as inaccurate or likely to trigger additional procurement and legal questions."
+      ],
+      "confidence": "high",
+      "evidence_ids": [
+        "EV-GONG-TRANSCRIPT-CALL-004",
+        "EV-GONG-TRANSCRIPT-CALL-008"
+      ],
+      "reason_codes": [
+        "pricing_recommendation",
+        "legal_or_liability_change",
+        "commercial_concession",
+        "customer_facing_language",
+        "conflicting_evidence",
+        "missing_source_data"
+      ],
+      "policy_rules": [
+        "Deal Desk policy rule 1",
+        "Deal Desk policy rule 4",
+        "Deal Desk policy rule 6",
+        "Deal Desk policy rule 7"
+      ],
+      "explanation": "Human approval is required from deal_desk, human_reviewer, legal, sales_leader for 2 grouped recommendation(s) because they trigger: pricing_recommendation, legal_or_liability_change, commercial_concession, customer_facing_language, conflicting_evidence, missing_source_data. The model cannot approve or publish these recommendations.",
+      "model_alias": "synthesis_model",
+      "prompt_version": "negotiation_strategy.v2",
+      "created_at": "2026-08-30T13:11:31.154004Z",
+      "decided_at": null
+    }
+  ],
+  "trace_event_ids": [
+    "7882ddb2-e727-41cc-867b-11697efde4b3",
+    "12822c8d-dc8f-4fcd-9ba9-4919ab7c2368",
+    "8b330ee2-9a66-4d64-9471-4630d9cc7ed4",
+    "3e357f79-194d-4353-935f-c20fd3908309",
+    "6f3bd62b-59ee-4c75-8151-6687560f0058",
+    "508831e6-0d60-4a82-8e55-9d53c03aaeb0",
+    "4b467324-0ceb-48b2-85d3-3ed5fc4a83fd",
+    "a1d2afac-1ca3-4f3f-aacf-d90e263bb4b0",
+    "2251b70f-47d7-42d1-9e05-7d7af1e613a6",
+    "c5038584-cbcb-4783-a2ae-ab35a44bb51a",
+    "cee190bb-494b-403c-90a8-fa9f06dea848",
+    "64400d26-bcd5-4d5e-a486-9c66a983efc4",
+    "97859ab3-795e-4470-a445-a48316c25574",
+    "6d626e36-617e-44c8-b510-9a87e808cdaa",
+    "1751cb65-b9e7-49a7-b892-ab6c28747a81",
+    "0747ba17-2bee-4e92-bdd4-a479d90b8475",
+    "0cc96e24-6cb0-470f-a409-aeacbf5856f9",
+    "406bd5e4-ba97-4d26-a728-b060ace35739",
+    "37ca3125-76fa-4a8c-88ab-9bdf78f89c49",
+    "f3c473c6-8fe3-44f9-a220-12dde5687f3d",
+    "0b164e0e-f430-4f2f-b14a-068009d03b06",
+    "69ded2ce-cfd3-4482-ae99-07c36a3a5ac3",
+    "332e25d8-b0ca-45f7-b3d5-e961232f007c",
+    "8e5cc23a-e1af-4a75-883f-19468b15a277",
+    "b9298982-12e9-45a2-8cbf-a625ff21d63c",
+    "afbbdbd1-c2c8-4e02-a964-58073a3da8bb",
+    "a7d7317e-4801-451f-811b-bddb985649a9",
+    "ec4dc417-e5de-49ec-92d2-ce975489c43c",
+    "2eb3dd53-4588-4677-a385-59afa3d88a29",
+    "29c5dc32-be00-4c2c-853a-abe8c3086429",
+    "3b81f9aa-0745-40d1-8129-5d2be8263fc9",
+    "226a113f-26a9-4d78-b5cc-fbda84a4e358",
+    "c311477a-1170-4fa9-9f21-a7fdbcc417cf",
+    "df598924-7ba0-49c5-99b7-c9dc4ead84ca",
+    "974bdc9e-a5a3-43ed-871e-4982f6bd3676",
+    "6a3d0ef9-82d0-4161-bcf1-662c4adcd1f4",
+    "36d7f1a2-bc04-4682-8472-1de77fd59763"
+  ],
+  "safe_error": null,
+  "created_at": "2026-08-30T13:11:31.238705Z",
+  "completed_at": "2026-08-30T13:11:31.238678Z"
+}

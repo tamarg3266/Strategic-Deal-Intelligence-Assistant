@@ -15,9 +15,10 @@ litellm:
   model_aliases:
     extraction_model: gpt-5.6-luna
     risk_model: gpt-5.6-sol
-    synthesis_model: gpt-5.6-sol
+    synthesis_model: gpt-5.6-luna
   temperature: 1
   max_output_tokens: 4000
+  synthesis_max_output_tokens: 1800
 
 retrieval:
   max_evidence_items: 40

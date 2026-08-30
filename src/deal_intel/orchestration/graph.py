@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import re
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -13,13 +14,18 @@ from deal_intel.config.settings import AppConfig, load_config
 from deal_intel.contracts.schemas import (
     AnalystReport,
     EvidenceRecord,
+    ProgressStage,
+    ProgressStatus,
+    RunProgress,
     RunRequest,
     RunResult,
     StrategicBrief,
+    StrategySynthesis,
     TraceEvent,
     utc_now,
 )
 from deal_intel.control_plane.authorization import AuthorizationEngine
+from deal_intel.evidence_plane.index_manager import EvidenceIndexManager
 from deal_intel.evidence_plane.ingestion import EvidenceIngestor
 from deal_intel.evidence_plane.ledger import EvidenceLedger
 from deal_intel.evidence_plane.retrieval import EvidenceRetriever
@@ -36,7 +42,11 @@ from deal_intel.reasoning_plane.analysts import (
     CommercialAnalyst,
     RiskApprovalAnalyst,
 )
-from deal_intel.reasoning_plane.composer import PROMPT_VERSION, BriefComposer
+from deal_intel.reasoning_plane.brief_assembler import BriefAssembler
+from deal_intel.reasoning_plane.strategy import (
+    PROMPT_VERSION as STRATEGY_PROMPT_VERSION,
+)
+from deal_intel.reasoning_plane.strategy import NegotiationStrategyAgent
 
 
 @dataclass
@@ -44,12 +54,14 @@ class WorkflowServices:
     config: AppConfig
     authorization: AuthorizationEngine
     ingestor: EvidenceIngestor
+    index_manager: EvidenceIndexManager
     evidence_ledger: EvidenceLedger
     retriever: EvidenceRetriever
     run_ledger: RunLedger
     gateway: ModelGateway
     analysts: dict[str, Any]
-    composer: BriefComposer
+    strategy_agent: NegotiationStrategyAgent
+    brief_assembler: BriefAssembler
     citations: CitationVerifier
     grounding: GroundingValidator
     policy: GovernancePolicyEngine
@@ -62,6 +74,7 @@ def build_services(
 ) -> WorkflowServices:
     config = config or load_config()
     evidence_ledger = EvidenceLedger(config.paths.sqlite_path)
+    ingestor = EvidenceIngestor(config.paths.data_root)
     run_ledger = RunLedger(evidence_ledger)
     if gateway is None:
         gateway = LiteLLMGateway(
@@ -80,7 +93,8 @@ def build_services(
     return WorkflowServices(
         config=config,
         authorization=AuthorizationEngine(config.paths.data_root),
-        ingestor=EvidenceIngestor(config.paths.data_root),
+        ingestor=ingestor,
+        index_manager=EvidenceIndexManager(ingestor, evidence_ledger),
         evidence_ledger=evidence_ledger,
         retriever=EvidenceRetriever(
             evidence_ledger, max_items=config.retrieval.max_evidence_items
@@ -92,7 +106,12 @@ def build_services(
             "buyer_signal_analysis": BuyerSignalAnalyst(gateway, prompt_root),
             "risk_approval_analysis": RiskApprovalAnalyst(gateway, prompt_root),
         },
-        composer=BriefComposer(gateway, prompt_root),
+        strategy_agent=NegotiationStrategyAgent(
+            gateway,
+            prompt_root,
+            max_output_tokens=config.litellm.synthesis_max_output_tokens,
+        ),
+        brief_assembler=BriefAssembler(),
         citations=CitationVerifier(),
         grounding=GroundingValidator(),
         policy=GovernancePolicyEngine(),
@@ -104,8 +123,30 @@ def build_graph(
     config: AppConfig | None = None,
     gateway: ModelGateway | None = None,
     services: WorkflowServices | None = None,
+    progress_observer: Callable[[RunProgress], None] | None = None,
 ):
     services = services or build_services(config, gateway)
+
+    def progress(
+        run_id: str,
+        stage: ProgressStage,
+        status: ProgressStatus,
+        message: str,
+    ) -> None:
+        if progress_observer is None:
+            return
+        try:
+            progress_observer(
+                RunProgress(
+                    run_id=run_id,
+                    stage=stage,
+                    status=status,
+                    message=message,
+                )
+            )
+        except Exception:
+            # A disconnected UI must not interrupt a durable workflow run.
+            return
 
     def trace(
         state: GraphState,
@@ -126,6 +167,7 @@ def build_graph(
 
     def authorize(state: GraphState) -> dict[str, object]:
         run_id = state.run_id or str(uuid4())
+        progress(run_id, "authorization", "started", "Checking request access.")
         services.run_ledger.start_run(run_id, state.request)
         decision = services.authorization.authorize(state.request, run_id)
         state_with_id = state.model_copy(update={"run_id": run_id})
@@ -136,12 +178,14 @@ def build_graph(
             {"decision": "allow" if decision.allowed else "deny"},
         )
         if not decision.allowed:
+            progress(run_id, "authorization", "completed", "Authorization completed.")
             return {
                 "run_id": run_id,
                 "status": "denied",
                 "safe_error": "access_denied",
                 "trace_event_ids": event_ids,
             }
+        progress(run_id, "authorization", "completed", "Authorization completed.")
         return {
             "run_id": run_id,
             "capabilities": decision.capabilities,
@@ -149,15 +193,23 @@ def build_graph(
         }
 
     def retrieve(state: GraphState) -> dict[str, object]:
+        index_ready = False
         try:
-            records = services.ingestor.load_records()
-            services.evidence_ledger.replace_index(records)
+            progress(state.run_id or "", "indexing", "started", "Checking evidence index.")
+            index_result = services.index_manager.ensure_current()
             event_ids = trace(
                 state,
                 "tool_call",
-                "evidence_index_refreshed",
-                {"record_count": len(records)},
+                (
+                    "evidence_index_refreshed"
+                    if index_result.refreshed
+                    else "evidence_index_reused"
+                ),
+                {"record_count": index_result.record_count},
             )
+            progress(state.run_id or "", "indexing", "completed", "Evidence index is ready.")
+            index_ready = True
+            progress(state.run_id or "", "retrieval", "started", "Retrieving authorized evidence.")
             bundles = []
             for capability in state.capabilities:
                 query = _query_for_purpose(capability.purpose, state.request.user_input)
@@ -192,13 +244,19 @@ def build_graph(
                 {"decision": "allow" if allowed_for_generation else "deny"},
             )
             if not allowed_for_generation:
+                progress(state.run_id or "", "retrieval", "failed", "Evidence retrieval failed.")
                 return {
                     "status": "failed",
                     "safe_error": "generation_not_authorized",
                     "trace_event_ids": event_ids,
                 }
+            progress(state.run_id or "", "retrieval", "completed", "Authorized evidence is ready.")
             return {"bundles": bundles, "trace_event_ids": event_ids}
         except Exception as exc:
+            if index_ready:
+                progress(state.run_id or "", "retrieval", "failed", "Evidence retrieval failed.")
+            else:
+                progress(state.run_id or "", "indexing", "failed", "Evidence indexing failed.")
             event_ids = trace(
                 state,
                 "retrieval",
@@ -212,6 +270,7 @@ def build_graph(
             }
 
     async def analyze(state: GraphState) -> dict[str, object]:
+        progress(state.run_id or "", "analysis", "started", "Running specialized analysts.")
         bundle_by_capability = {bundle.capability_id: bundle for bundle in state.bundles}
         event_ids = list(state.trace_event_ids)
         jobs = []
@@ -238,6 +297,7 @@ def build_graph(
             if isinstance(result, BaseException)
         ]
         if failures:
+            progress(state.run_id or "", "analysis", "failed", "Specialized analysis failed.")
             state_for_trace = state.model_copy(update={"trace_event_ids": event_ids})
             event_ids = trace(
                 state_for_trace,
@@ -293,6 +353,7 @@ def build_graph(
                         validation_feedback=feedback,
                     )
                 except Exception as exc:
+                    progress(state.run_id or "", "analysis", "failed", "Specialized analysis failed.")
                     state_for_trace = state.model_copy(
                         update={"trace_event_ids": event_ids}
                     )
@@ -314,6 +375,7 @@ def build_graph(
                 verification = services.citations.verify_report(report, bundle)
                 grounding = services.grounding.verify_report(report, bundle)
             if not verification.valid or not grounding.valid:
+                progress(state.run_id or "", "analysis", "failed", "Analysis validation failed.")
                 sanitized = _omit_unsupported_findings(
                     report,
                     verification.invalid_evidence_ids,
@@ -362,37 +424,86 @@ def build_graph(
                     "safe_error": "unsupported_agent_claim",
                     "trace_event_ids": event_ids,
                 }
+        progress(state.run_id or "", "analysis", "completed", "Specialized analysis completed.")
         return {"reports": reports, "trace_event_ids": event_ids}
 
-    async def compose(state: GraphState) -> dict[str, object]:
+    async def synthesize(state: GraphState) -> dict[str, object]:
+        progress(state.run_id or "", "strategy", "started", "Synthesizing negotiation strategy.")
         catalog = _evidence_catalog(state.bundles)
         event_ids = trace(
             state,
             "agent_invocation",
-            "brief_composer_started",
+            "negotiation_strategy_started",
             {"validated_report_count": len(state.reports)},
         )
         try:
-            brief = await services.composer.compose(
-                state.reports, catalog, state.run_id or ""
+            strategy = await services.strategy_agent.synthesize(
+                state.reports,
+                state.run_id or "",
             )
         except Exception as exc:
+            progress(state.run_id or "", "strategy", "failed", "Strategy synthesis failed.")
             state_for_trace = state.model_copy(update={"trace_event_ids": event_ids})
             event_ids = trace(
                 state_for_trace,
                 "agent_invocation",
-                "brief_composition_failed",
+                "negotiation_strategy_failed",
                 {"error_type": type(exc).__name__},
             )
             return {
                 "status": "failed",
-                "safe_error": "brief_composition_failed",
+                "safe_error": "strategy_synthesis_failed",
                 "trace_event_ids": event_ids,
             }
+
+        verification = services.citations.verify_strategy(strategy, state.reports)
+        grounding = services.grounding.verify_strategy(strategy, catalog)
+        incomplete = _strategy_is_incomplete(strategy, state.reports)
+        state_for_trace = state.model_copy(update={"trace_event_ids": event_ids})
+        event_ids = trace(
+            state_for_trace,
+            "validation",
+            (
+                "strategy_synthesis_validated"
+                if verification.valid and grounding.valid and not incomplete
+                else "strategy_synthesis_rejected"
+            ),
+            {
+                "invalid_evidence_ids": verification.invalid_evidence_ids,
+                "invalid_recommendation_ids": (
+                    verification.invalid_recommendation_ids
+                ),
+                "grounding_violations": grounding.violations,
+                "missing_strategy_findings": incomplete,
+            },
+        )
+        if incomplete:
+            progress(state.run_id or "", "strategy", "failed", "Strategy validation failed.")
+            return {
+                "status": "failed",
+                "safe_error": "incomplete_strategy_synthesis",
+                "trace_event_ids": event_ids,
+            }
+        if not verification.valid or not grounding.valid:
+            progress(state.run_id or "", "strategy", "failed", "Strategy validation failed.")
+            return {
+                "status": "failed",
+                "safe_error": "unsupported_strategy_synthesis",
+                "trace_event_ids": event_ids,
+            }
+
+        brief = services.brief_assembler.assemble(
+            state.reports,
+            strategy,
+            catalog,
+        )
+        progress(state.run_id or "", "strategy", "completed", "Strategy synthesis completed.")
         return {"brief": brief, "trace_event_ids": event_ids}
 
     def govern(state: GraphState) -> dict[str, object]:
+        progress(state.run_id or "", "governance", "started", "Applying deterministic governance.")
         if state.brief is None:
+            progress(state.run_id or "", "governance", "failed", "Governance validation failed.")
             return {"status": "failed", "safe_error": "brief_missing"}
         brief = state.brief
         catalog = _evidence_catalog(state.bundles)
@@ -436,6 +547,7 @@ def build_graph(
             },
         )
         if not verification.valid or not grounding.valid:
+            progress(state.run_id or "", "governance", "failed", "Governance validation failed.")
             return {
                 "status": "failed",
                 "safe_error": "unsupported_brief_claim",
@@ -462,6 +574,7 @@ def build_graph(
         if requirements and not all(
             capability.can_request_approval for capability in state.capabilities
         ):
+            progress(state.run_id or "", "governance", "failed", "Approval routing failed.")
             state_for_trace = state.model_copy(update={"trace_event_ids": event_ids})
             event_ids = trace(
                 state_for_trace,
@@ -480,7 +593,7 @@ def build_graph(
             requirements=requirements,
             recommendations=brief.recommendations,
             model_alias="synthesis_model",
-            prompt_version=PROMPT_VERSION,
+            prompt_version=STRATEGY_PROMPT_VERSION,
         )
         status = "allowed"
         if approvals:
@@ -494,11 +607,12 @@ def build_graph(
                     "human_approval_requested",
                     {
                         "approval_id": approval.approval_id,
-                        "recommendation_id": approval.recommendation_id,
-                        "required_role": approval.required_role,
+                        "recommendation_ids": approval.recommendation_ids,
+                        "required_roles": approval.required_roles,
                         "reason_codes": approval.reason_codes,
                     },
                 )
+        progress(state.run_id or "", "governance", "completed", "Governance checks completed.")
         return {
             "status": status,
             "brief": brief,
@@ -509,6 +623,7 @@ def build_graph(
     def finalize(state: GraphState) -> dict[str, object]:
         if state.run_id is None:
             raise RuntimeError("Cannot finalize a run without an ID")
+        progress(state.run_id, "persistence", "started", "Persisting run result.")
         status = state.status
         if state.brief is not None and state.safe_error is None:
             status = state.brief.status
@@ -530,13 +645,14 @@ def build_graph(
         )
         services.run_ledger.persist_result(result)
         _write_artifacts(services.config.paths.artifact_dir, result)
+        progress(state.run_id, "persistence", "completed", "Run result persisted.")
         return {"status": status, "trace_event_ids": event_ids, "result": result}
 
     graph = StateGraph(GraphState)
     graph.add_node("control_authorize", authorize)
     graph.add_node("evidence_retrieve", retrieve)
     graph.add_node("reasoning_analyze", analyze)
-    graph.add_node("reasoning_compose", compose)
+    graph.add_node("reasoning_synthesize", synthesize)
     graph.add_node("governance_validate", govern)
     graph.add_node("persist_terminal", finalize)
     graph.set_entry_point("control_authorize")
@@ -553,10 +669,10 @@ def build_graph(
     graph.add_conditional_edges(
         "reasoning_analyze",
         _route_on_error,
-        {"continue": "reasoning_compose", "terminal": "persist_terminal"},
+        {"continue": "reasoning_synthesize", "terminal": "persist_terminal"},
     )
     graph.add_conditional_edges(
-        "reasoning_compose",
+        "reasoning_synthesize",
         _route_on_error,
         {"continue": "governance_validate", "terminal": "persist_terminal"},
     )
@@ -570,13 +686,25 @@ async def run_workflow(
     *,
     config: AppConfig | None = None,
     gateway: ModelGateway | None = None,
+    progress_observer: Callable[[RunProgress], None] | None = None,
 ) -> RunResult:
-    graph = build_graph(config=config, gateway=gateway)
-    output = await graph.ainvoke(GraphState(request=request))
-    result = output.get("result") if isinstance(output, dict) else output.result
-    if not isinstance(result, RunResult):
-        result = RunResult.model_validate(result)
-    return result
+    owns_gateway = gateway is None
+    services = build_services(config=config, gateway=gateway)
+    graph = build_graph(services=services, progress_observer=progress_observer)
+    try:
+        output = await graph.ainvoke(GraphState(request=request))
+        result = output.get("result") if isinstance(output, dict) else output.result
+        if not isinstance(result, RunResult):
+            result = RunResult.model_validate(result)
+        return result
+    finally:
+        if owns_gateway:
+            close = getattr(services.gateway, "aclose", None)
+            if close is not None:
+                try:
+                    await close()
+                except Exception:
+                    pass
 
 
 def _route_on_error(state: GraphState) -> str:
@@ -606,6 +734,13 @@ def _evidence_catalog(bundles) -> dict[str, EvidenceRecord]:
     }
 
 
+def _strategy_is_incomplete(
+    strategy: StrategySynthesis,
+    reports: list[AnalystReport],
+) -> bool:
+    return any(report.claims for report in reports) and not strategy.claims()
+
+
 def _attach_approval_explanations(
     brief: StrategicBrief, approvals
 ) -> StrategicBrief:
@@ -613,7 +748,9 @@ def _attach_approval_explanations(
     lines.append("\nHuman approval gates:")
     for approval in approvals:
         lines.append(
-            f"- Approval {approval.approval_id} requires {approval.required_role}: "
+            f"- Approval {approval.approval_id} requires "
+            f"{', '.join(approval.required_roles)} for recommendations "
+            f"{', '.join(approval.recommendation_ids)}: "
             f"{approval.explanation} Evidence: "
             f"{', '.join(approval.evidence_ids)}"
         )

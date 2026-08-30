@@ -21,5 +21,9 @@ class ModelGateway(Protocol):
         run_id: str,
         agent_name: str,
         prompt_version: str,
+        max_output_tokens: int | None = None,
     ) -> OutputT:
+        ...
+
+    async def aclose(self) -> None:
         ...

@@ -10,12 +10,15 @@ produce permission-scoped, evidence-backed negotiation briefs.
 - Ingestion of Salesforce, Gong summaries and transcripts, pricing notes,
   Deal Desk policy, and generated Slack updates.
 - SQLite FTS5 evidence retrieval with capability-scoped metadata filtering and BM25 ranking.
-- Three specialized LLM agents plus an LLM brief composer.
+- Content-fingerprinted evidence indexing that rebuilds only when source files change.
+- Three specialized LLM analysts plus an LLM Negotiation Strategy Agent.
+- Deterministic assembly of the nine required brief sections from validated outputs.
 - Typed Pydantic contracts and schema-repair handling at the model boundary.
 - Deterministic citation validation and Deal Desk policy enforcement.
-- Human approval requests with explicit roles, reasons, policy rules, and evidence.
+- Grouped human approval gates with explicit roles, reasons, policy rules, and evidence.
 - SQLite persistence for runs, traces, model usage, approvals, decisions, and feedback.
 - JSON run artifacts under `var/artifacts/`.
+- Safe stage-progress streaming in the local console without evidence or prompt content.
 
 Red-team agents are intentionally outside this implementation scope.
 
@@ -40,6 +43,8 @@ LITELLM_API_KEY='your-token'
 After authentication, set `LITELLM_EXTRACTION_MODEL`, `LITELLM_RISK_MODEL`,
 and `LITELLM_SYNTHESIS_MODEL` to model IDs returned by `/v1/models`. The same
 model may be used for all three roles when only one capable model is available.
+`LITELLM_SYNTHESIS_MAX_OUTPUT_TOKENS` defaults to `1800`; the synthesis alias
+defaults to the faster `gpt-5.6-luna` model for a shorter critical path.
 
 Validate configuration, sources, SQLite, and the server before generating data:
 
@@ -100,6 +105,10 @@ cd web && npm run dev
 
 Open the local URL printed by Vinext to check runtime readiness and generate a brief
 through the same workflow used by the CLI. The API intentionally binds to loopback.
+The web server builds the SQLite evidence index at startup. Each run verifies the
+source fingerprint and reuses the index unless a `.tsv` or `.md` source changed.
+The console consumes `POST /api/runs/stream` as newline-delimited JSON; the existing
+`POST /api/runs` endpoint remains available for ordinary terminal JSON responses.
 
 The two authorized scenarios require live LiteLLM responses. The denied
 scenario exits before model invocation and can be used to verify fail-closed
@@ -113,7 +122,7 @@ List the complete approval payload, including why approval is required:
 deal-intel approval list --run-id RUN_ID
 ```
 
-Record a human decision. The reviewer role must match the required role:
+Record a human decision. The reviewer role must be one of the gate's required roles:
 
 ```bash
 deal-intel approval decide APPROVAL_ID USR-5005 deal_desk rejected \
@@ -125,6 +134,11 @@ The transaction updates the approval and inserts two immutable rows:
 - `approval_decisions`: the audit record for the human decision.
 - `human_feedback`: the original recommendation, model and prompt version,
   cited evidence, policy reasons, reviewer decision, and rationale.
+
+Recommendations with the same required-role routing are grouped into one approval
+gate. The gate aggregates recommendation IDs and policy reasons, remains pending
+until every required role approves, and closes immediately when any required role
+rejects or requests changes.
 
 Export feedback candidates for a separately governed SFT, preference-learning,
 or RLHF pipeline:

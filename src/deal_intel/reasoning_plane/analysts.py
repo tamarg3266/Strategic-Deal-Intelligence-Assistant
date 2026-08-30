@@ -7,7 +7,7 @@ from uuid import uuid4
 from deal_intel.contracts.schemas import AnalystReport, EvidenceBundle
 from deal_intel.model_runtime.gateway import ModelGateway
 
-PROMPT_VERSION = "analysts.v1"
+PROMPT_VERSION = "analysts.v2"
 
 
 class BaseAnalyst:
@@ -42,6 +42,9 @@ class BaseAnalyst:
                 {
                     "user_request": user_input,
                     "validation_feedback": validation_feedback or [],
+                    "allowed_evidence_ids": sorted(
+                        record.evidence_id for record in bundle.records
+                    ),
                     "authorized_evidence": [
                         self._prompt_record(record) for record in bundle.records
                     ],

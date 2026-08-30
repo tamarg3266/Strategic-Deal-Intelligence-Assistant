@@ -27,7 +27,8 @@ from deal_intel.reasoning_plane.analysts import (
     CommercialAnalyst,
     RiskApprovalAnalyst,
 )
-from deal_intel.reasoning_plane.composer import BriefComposer
+from deal_intel.reasoning_plane.brief_assembler import BriefAssembler
+from deal_intel.reasoning_plane.strategy import NegotiationStrategyAgent
 
 DATA_ROOT = Path("synthetic_data")
 EXPECTED_OPPORTUNITIES = {"OPP-1001", "OPP-1002", "OPP-1003"}
@@ -134,7 +135,8 @@ def test_multi_agent_design_has_at_least_three_specialized_agents() -> None:
         "buyer_signal_analyst",
         "risk_approval_analyst",
     }
-    assert BriefComposer is not None
+    assert NegotiationStrategyAgent is not None
+    assert BriefAssembler is not None
 
 
 def test_llm_backed_agents_use_model_gateway_with_litellm_implementation() -> None:

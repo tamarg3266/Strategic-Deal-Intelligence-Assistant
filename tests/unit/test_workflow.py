@@ -5,20 +5,23 @@ from deal_intel.config.settings import AppConfig, LiteLLMConfig, PathConfig
 from deal_intel.contracts.schemas import (
     REQUIRED_BRIEF_SECTIONS,
     AnalystReport,
-    BriefDraft,
     CitedClaim,
     Recommendation,
+    RunProgress,
     RunRequest,
+    StrategySynthesis,
 )
 from deal_intel.model_runtime.fake import FakeGateway
 from deal_intel.orchestration.graph import (
     _omit_unsupported_findings,
     _remove_unsupported_brief_identifiers,
+    _strategy_is_incomplete,
     run_workflow,
 )
 
 
-def test_authorized_workflow_calls_three_agents_and_composer(tmp_path: Path) -> None:
+def test_authorized_workflow_calls_three_agents_and_strategy(tmp_path: Path) -> None:
+    progress: list[RunProgress] = []
     gateway = FakeGateway(
         {
             "commercial_analyst": AnalystReport(
@@ -42,17 +45,14 @@ def test_authorized_workflow_calls_three_agents_and_composer(tmp_path: Path) -> 
                 ],
             ),
             "risk_approval_analyst": AnalystReport(analyst_name="ignored"),
-            "brief_composer": BriefDraft(
-                sections={
-                    **{
-                        section: "Grounded content."
-                        for section in REQUIRED_BRIEF_SECTIONS
-                    },
-                    "Executive Summary": (
-                        "Grounded content [EV-GONG-SUMMARY-CALL-008]."
-                    ),
-                },
-                cited_evidence_ids=["EV-SF-OPPORTUNITY-OPP-1001"],
+            "negotiation_strategy_agent": StrategySynthesis(
+                executive_summary=[
+                    CitedClaim(
+                        claim="Stakeholders support renewal with conditions.",
+                        evidence_ids=["EV-GONG-SUMMARY-CALL-008"],
+                        confidence="high",
+                    )
+                ],
             ),
         }
     )
@@ -61,6 +61,7 @@ def test_authorized_workflow_calls_three_agents_and_composer(tmp_path: Path) -> 
             RunRequest(opportunity_id="OPP-1001", requester_id="USR-5001"),
             config=make_test_config(tmp_path),
             gateway=gateway,
+            progress_observer=progress.append,
         )
     )
 
@@ -71,14 +72,35 @@ def test_authorized_workflow_calls_three_agents_and_composer(tmp_path: Path) -> 
         "commercial_analyst",
         "buyer_signal_analyst",
         "risk_approval_analyst",
-        "brief_composer",
+        "negotiation_strategy_agent",
     }
     assert "source=synthetic_data/gong/gong_call_summaries.tsv" in (
         result.brief.sections["Source Evidence"]
     )
+    strategy_call = next(
+        call
+        for call in gateway.calls
+        if call["agent_name"] == "negotiation_strategy_agent"
+    )
+    assert "citation_catalog" not in strategy_call["user"]
+    assert "authorized_evidence" not in strategy_call["user"]
+    assert strategy_call["max_output_tokens"] == 1800
+    completed_stages = {
+        item.stage for item in progress if item.status == "completed"
+    }
+    assert completed_stages == {
+        "authorization",
+        "indexing",
+        "retrieval",
+        "analysis",
+        "strategy",
+        "governance",
+        "persistence",
+    }
+    assert all("EV-" not in item.message for item in progress)
 
 
-def test_analysts_run_concurrently_and_any_failure_blocks_composer(
+def test_analysts_run_concurrently_and_any_failure_blocks_strategy(
     tmp_path: Path,
 ) -> None:
     class ConcurrentFailingGateway:
@@ -88,14 +110,14 @@ def test_analysts_run_concurrently_and_any_failure_blocks_composer(
             self.active = 0
             self.max_active = 0
             self.all_analysts_started = asyncio.Event()
-            self.composer_called = False
+            self.strategy_called = False
 
         async def generate_structured(self, **kwargs):
             agent_name = kwargs["agent_name"]
             output_schema = kwargs["output_schema"]
-            if agent_name == "brief_composer":
-                self.composer_called = True
-                raise AssertionError("Composer must not run after an analyst failure")
+            if agent_name == "negotiation_strategy_agent":
+                self.strategy_called = True
+                raise AssertionError("Strategy must not run after an analyst failure")
 
             self.started.add(agent_name)
             self.active += 1
@@ -133,7 +155,7 @@ def test_analysts_run_concurrently_and_any_failure_blocks_composer(
         "commercial_analyst",
         "risk_approval_analyst",
     }
-    assert gateway.composer_called is False
+    assert gateway.strategy_called is False
 
 
 def test_sensitive_workflow_stops_at_human_approval(tmp_path: Path) -> None:
@@ -161,11 +183,14 @@ def test_sensitive_workflow_stops_at_human_approval(tmp_path: Path) -> None:
                 ],
                 recommendations=[pricing_recommendation],
             ),
-            "brief_composer": BriefDraft(
-                sections={
-                    section: "Internal analysis." for section in REQUIRED_BRIEF_SECTIONS
-                },
-                cited_evidence_ids=["EV-PRICING-PN-4004"],
+            "negotiation_strategy_agent": StrategySynthesis(
+                executive_summary=[
+                    CitedClaim(
+                        claim="The pricing position is pending approval.",
+                        evidence_ids=["EV-PRICING-PN-4004"],
+                        confidence="high",
+                    )
+                ]
             ),
         }
     )
@@ -180,8 +205,8 @@ def test_sensitive_workflow_stops_at_human_approval(tmp_path: Path) -> None:
     assert result.status == "approval_required"
     assert result.brief is not None
     assert result.brief.status == "approval_required"
-    assert result.approvals
-    assert {approval.required_role for approval in result.approvals} == {
+    assert len(result.approvals) == 1
+    assert set(result.approvals[0].required_roles) == {
         "deal_desk",
         "sales_leader",
         "human_reviewer",
@@ -218,11 +243,8 @@ def test_grounding_failure_repairs_only_rejected_analyst(tmp_path: Path) -> None
             "commercial_analyst": [invalid_report, repaired_report],
             "buyer_signal_analyst": AnalystReport(analyst_name="ignored"),
             "risk_approval_analyst": AnalystReport(analyst_name="ignored"),
-            "brief_composer": BriefDraft(
-                sections={
-                    section: "Grounded content." for section in REQUIRED_BRIEF_SECTIONS
-                },
-                cited_evidence_ids=["EV-SF-OPPORTUNITY-OPP-1001"],
+            "negotiation_strategy_agent": StrategySynthesis(
+                executive_summary=[repaired_report.claims[0]]
             ),
         }
     )
@@ -290,6 +312,31 @@ def test_unsupported_source_label_removal_preserves_full_evidence_id() -> None:
 
     assert "[SLACK-1001]" not in sanitized.sections["Executive Summary"]
     assert "[EV-SLACK-SLACK-1001-01]" in sanitized.sections["Executive Summary"]
+
+
+def test_empty_strategy_is_incomplete_when_validated_claims_exist() -> None:
+    reports = [
+        AnalystReport(
+            analyst_name="commercial_analyst",
+            claims=[
+                CitedClaim(
+                    claim="The opportunity is in order review.",
+                    evidence_ids=["EV-SF-OPPORTUNITY-OPP-1001"],
+                    confidence="high",
+                )
+            ],
+        )
+    ]
+
+    assert _strategy_is_incomplete(StrategySynthesis(), reports) is True
+    assert _strategy_is_incomplete(
+        StrategySynthesis(executive_summary=reports[0].claims),
+        reports,
+    ) is False
+    assert _strategy_is_incomplete(
+        StrategySynthesis(),
+        [AnalystReport(analyst_name="commercial_analyst")],
+    ) is False
 
 
 def test_denied_workflow_never_calls_model(tmp_path: Path) -> None:

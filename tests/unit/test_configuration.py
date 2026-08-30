@@ -60,12 +60,16 @@ def test_offline_diagnostics_validate_sources_and_sqlite(tmp_path: Path) -> None
 def test_structured_probe_uses_configured_temperature(monkeypatch) -> None:
     class StubGateway:
         temperature: float | None = None
+        closed = False
 
         def __init__(self, **kwargs: object) -> None:
             type(self).temperature = kwargs["temperature"]  # type: ignore[assignment]
 
         async def generate_structured(self, **kwargs: object) -> ModelProbe:
             return ModelProbe(status="ready")
+
+        async def aclose(self) -> None:
+            type(self).closed = True
 
     monkeypatch.setattr(
         "deal_intel.config.diagnostics.LiteLLMGateway",
@@ -77,3 +81,4 @@ def test_structured_probe_uses_configured_temperature(monkeypatch) -> None:
 
     assert result.status == "pass"
     assert StubGateway.temperature == 1
+    assert StubGateway.closed is True

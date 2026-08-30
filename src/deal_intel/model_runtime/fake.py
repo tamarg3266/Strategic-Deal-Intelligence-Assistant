@@ -12,7 +12,7 @@ class FakeGateway:
 
     def __init__(self, outputs: dict[str, BaseModel | list[BaseModel]]) -> None:
         self.outputs = outputs
-        self.calls: list[dict[str, str]] = []
+        self.calls: list[dict[str, object]] = []
         self._indices: defaultdict[str, int] = defaultdict(int)
 
     async def generate_structured(
@@ -26,15 +26,18 @@ class FakeGateway:
         run_id: str,
         agent_name: str,
         prompt_version: str,
+        max_output_tokens: int | None = None,
     ) -> OutputT:
-        del system, developer
         self.calls.append(
             {
                 "run_id": run_id,
                 "agent_name": agent_name,
                 "model_alias": model_alias,
                 "prompt_version": prompt_version,
+                "system": system,
+                "developer": developer,
                 "user": user,
+                "max_output_tokens": max_output_tokens,
             }
         )
         configured = self.outputs.get(agent_name, self.outputs.get(model_alias))
@@ -45,3 +48,6 @@ class FakeGateway:
             self._indices[agent_name] += 1
             configured = configured[index]
         return output_schema.model_validate(configured.model_dump())
+
+    async def aclose(self) -> None:
+        return None

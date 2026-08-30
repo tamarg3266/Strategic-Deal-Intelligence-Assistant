@@ -18,6 +18,7 @@ litellm:
     synthesis_model: fake-synthesis-model
   temperature: 0
   max_output_tokens: 4000
+  synthesis_max_output_tokens: 1800
 
 retrieval:
   max_evidence_items: 40
