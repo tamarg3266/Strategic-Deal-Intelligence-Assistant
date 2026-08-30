@@ -93,14 +93,18 @@ python scripts/run_scenarios.py
 Build the local operational console:
 
 ```bash
-cd web && npm run build
+cd web
+npm ci
+npm run build
 ```
 
 Run the API and console in two terminals:
 
 ```bash
 deal-intel web
-cd web && npm run dev
+cd web
+npm ci
+npm run dev
 ```
 
 Open the local URL printed by Vinext to check runtime readiness and generate a brief

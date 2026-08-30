@@ -3,7 +3,7 @@
 ## Location
 
 Generated artifacts are written to this folder by `scripts/generate_deliverables.py`:
-`C:\projects\strategic-agent\Cato-IS-AI-Engineer-Exam\scripts\artifacts`
+`scripts/artifacts/`
 
 ## Contents
 
