@@ -1,0 +1,29 @@
+environment: test
+
+paths:
+  data_root: synthetic_data
+  sqlite_path: var/test_deal_intel.sqlite
+  prompt_root: src/deal_intel/reasoning_plane/prompts
+  artifact_dir: var/test_artifacts
+
+litellm:
+  base_url: http://localhost:4000
+  health_path: /health
+  timeout_seconds: 10
+  api_key_env: LITELLM_API_KEY
+  verify_tls: true
+  model_aliases:
+    extraction_model: fake-extraction-model
+    risk_model: fake-risk-model
+    synthesis_model: fake-synthesis-model
+  temperature: 0
+  max_output_tokens: 4000
+
+retrieval:
+  max_evidence_items: 40
+
+workflow:
+  max_schema_repair_attempts: 0
+  max_grounding_repair_attempts: 1
+  max_transport_retries: 0
+  fail_closed_on_policy_ambiguity: true

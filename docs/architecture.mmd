@@ -1,0 +1,44 @@
+flowchart TB
+  CLI[CLI] --> GRAPH[LangGraph orchestration]
+  WEB[Local Vinext console] --> API[Loopback web API]
+  API --> GRAPH
+  GRAPH --> AUTH[Control plane authorization]
+  AUTH -->|deny: safe reason only| DENIED[Denied result]
+  AUTH -->|allow| CAPS[Purpose-specific capabilities]
+
+  CAPS --> INGEST[Evidence ingestion]
+  INGEST --> EDB[(SQLite evidence + FTS5 index)]
+  EDB --> FILTER[SQL metadata and sensitivity filters]
+  FILTER --> RANK[FTS5 BM25 ranking + authorized context fill]
+  RANK --> BUNDLES[Capability-bound bundles]
+  BUNDLES --> GUARD[Pre-generation authorization guard]
+
+  GUARD --> FANOUT[Concurrent required-analyst fan-out]
+  FANOUT --> CA[Commercial Analyst]
+  FANOUT --> BA[Buyer Signal Analyst]
+  FANOUT --> RA[Risk and Approval Analyst]
+  CA --> CV[Analyst citation validation]
+  BA --> CV
+  RA --> CV
+  CV -->|all three valid| BC[Brief Composer]
+  CV -->|any required analyst fails| FAILED[Failed result; no brief]
+  BC --> FV[Final citation validation]
+  FV --> POLICY[Deterministic Deal Desk policy]
+
+  CA --> MG[ModelGateway]
+  BA --> MG
+  RA --> MG
+  BC --> MG
+  MG --> LITE[LiteLLM proxy]
+
+  POLICY -->|no gate| ALLOWED[Allowed internal brief]
+  POLICY -->|high impact or uncertainty| APPROVAL[Human approval request]
+  APPROVAL --> HUMAN[Authorized human reviewer]
+  HUMAN --> DECISIONS[(Approval decision audit)]
+  HUMAN --> FEEDBACK[(Separate human feedback records)]
+  FEEDBACK -. curated offline training .-> MODEL[Future model version]
+
+  DENIED --> RUNDB[(SQLite run and trace ledger)]
+  FAILED --> RUNDB
+  ALLOWED --> RUNDB
+  APPROVAL --> RUNDB

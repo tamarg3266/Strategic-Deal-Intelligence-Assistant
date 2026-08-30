@@ -86,6 +86,8 @@ The file is tab-separated and contains:
 - `author_role`
 - `synthetic_notice`
 - `source_access_level`
+- `context_role`
+- `evidence_basis_call_id`
 - `update_text`
 
 Each row is clearly marked synthetic. The updates add account-team context, reinforce known facts, and introduce ambiguity or possible conflicts that the prototype must surface in the brief.

@@ -1,0 +1,29 @@
+environment: local
+
+paths:
+  data_root: synthetic_data
+  sqlite_path: var/deal_intel.sqlite
+  prompt_root: src/deal_intel/reasoning_plane/prompts
+  artifact_dir: var/artifacts
+
+litellm:
+  base_url: http://localhost:4000
+  health_path: /health
+  timeout_seconds: 180
+  api_key_env: LITELLM_API_KEY
+  verify_tls: true
+  model_aliases:
+    extraction_model: gpt-5.6-luna
+    risk_model: gpt-5.6-sol
+    synthesis_model: gpt-5.6-sol
+  temperature: 1
+  max_output_tokens: 4000
+
+retrieval:
+  max_evidence_items: 40
+
+workflow:
+  max_schema_repair_attempts: 1
+  max_grounding_repair_attempts: 1
+  max_transport_retries: 2
+  fail_closed_on_policy_ambiguity: true

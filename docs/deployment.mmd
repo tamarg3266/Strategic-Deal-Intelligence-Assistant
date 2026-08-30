@@ -1,0 +1,20 @@
+flowchart LR
+  USER[Local seller or evaluator] --> CONSOLE[Vinext operational console]
+  USER --> CLI[CLI]
+  CONSOLE --> API[Loopback Python API]
+  API --> WORKER[LangGraph application worker]
+  CLI --> WORKER
+  WORKER --> DB[(SQLite prototype store)]
+  WORKER --> GATEWAY[Private LiteLLM proxy]
+  GATEWAY --> EXTRACT[Extraction model]
+  GATEWAY --> STRATEGY[Risk and synthesis model]
+
+  DATA[Synthetic Salesforce, Gong, pricing, policy, Slack files] --> WORKER
+  SECRET[Environment or secret manager] --> GATEWAY
+  WORKER --> ARTIFACTS[Protected run artifacts]
+  WORKER --> TELEMETRY[Trace and model invocation records]
+
+  DB -. production replacement .-> PG[(Highly available PostgreSQL)]
+  DB -. production replacement .-> SEARCH[Managed hybrid evidence search]
+  WORKER -. production replacement .-> QUEUE[Durable worker queue]
+  TELEMETRY -. production replacement .-> OTEL[OpenTelemetry backend]

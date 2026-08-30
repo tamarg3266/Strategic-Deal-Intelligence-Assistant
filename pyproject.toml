@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strategic-deal-intelligence"
+version = "0.1.0"
+description = "LangGraph-based Strategic Deal Intelligence Assistant prototype."
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27",
+  "langgraph>=0.2",
+  "pydantic>=2",
+  "pydantic-settings>=2",
+  "python-dotenv>=1",
+  "pyyaml>=6",
+  "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "pytest>=8",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+deal-intel = "deal_intel.interfaces.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+deal_intel = ["reasoning_plane/prompts/*.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
